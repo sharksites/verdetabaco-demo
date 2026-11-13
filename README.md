@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/SHARKWEB">
+  <a href="https://github.com/sharksites">
     <strong>SHARKWEB</strong>
   </a>
   · Construimos más allá de lo convencional.
