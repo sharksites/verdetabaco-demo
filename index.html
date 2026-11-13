@@ -57,8 +57,8 @@ nav.main{display:flex;gap:6px;margin-left:24px}
 .slide p{font-size:18px;opacity:.9;margin-bottom:28px;max-width:440px}
 .shoe{position:relative;display:grid;place-items:center}
 .shoe::before{content:"";position:absolute;width:min(440px,90%);aspect-ratio:1;border-radius:50%;background:#ffffff1c}
-.shoe img{position:relative;width:min(480px,100%);border-radius:var(--r);transform:scale(.9) rotate(-4deg);transition:transform 6s}
-.slide.on .shoe img{transform:scale(1.05) rotate(0)}
+.shoe svg,.shoe img{position:relative;width:min(480px,100%);border-radius:var(--r);transform:scale(.9) rotate(-4deg);transition:transform 6s}
+.slide.on .shoe svg,.slide.on .shoe img{transform:scale(1.05) rotate(0)}
 .dots{position:absolute;bottom:22px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:10px}
 .dots button{width:34px;height:3px;background:#fff6;border-radius:2px;overflow:hidden}
 .dots button.on{background:#fff}
@@ -70,16 +70,16 @@ section{padding:72px 0}
 .head a{font-size:14px;font-weight:600;border-bottom:2px solid var(--green);white-space:nowrap}
 .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .cat{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;color:#fff;display:flex;align-items:end;padding:24px}
-.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.cat:hover img{transform:scale(1.07)}
+.cat img,.cat>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.cat:hover img,.cat:hover>svg{transform:scale(1.07)}
 .cat::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000a)}
 .cat div{position:relative;z-index:1}.cat h3{font-size:30px}.cat span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .card{position:relative}
 .ph{position:relative;aspect-ratio:1;background:var(--cream);border-radius:var(--r);overflow:hidden}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .6s}
-.ph img+img{opacity:0}
-.card:hover .ph img+img{opacity:1}.card:hover .ph img{transform:scale(1.04)}
+.ph img,.ph>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .6s}
+.ph img+img,.ph>svg+svg{opacity:0}
+.card:hover .ph img+img,.card:hover .ph>svg+svg{opacity:1}.card:hover .ph img,.card:hover .ph>svg{transform:scale(1.04)}
 .tag{position:absolute;top:10px;left:10px;z-index:2;background:var(--tob);color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em}
 .fav{position:absolute;top:8px;right:8px;z-index:2;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:.2s}
 .fav.on{color:#c0392b;transform:scale(1.15)}
@@ -95,7 +95,7 @@ section{padding:72px 0}
 .story p{margin-bottom:26px;max-width:480px;color:#444}
 .story .eyebrow{color:var(--tob)}
 .mosaic{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.mosaic img{border-radius:var(--r);aspect-ratio:1;object-fit:cover;width:100%}
+.mosaic svg{border-radius:var(--r);aspect-ratio:1;width:100%;background:#fff8}.mosaic svg:nth-child(2){margin-top:32px}.mosaic img{border-radius:var(--r);aspect-ratio:1;object-fit:cover;width:100%}
 .mosaic img:nth-child(2){margin-top:32px}
 .ben{padding:44px 0;border-bottom:1px solid #0001}
 .ben .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -122,7 +122,7 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 .items{flex:1;overflow:auto;padding:0 20px}
 .empty{text-align:center;color:#777;margin-top:60px}
 .row{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid #0001;font-size:14px;align-items:center}
-.row img{border-radius:4px;aspect-ratio:1;object-fit:cover;width:72px}
+.row svg{border-radius:4px;width:72px;height:72px;background:var(--cream)}.row img{border-radius:4px;aspect-ratio:1;object-fit:cover;width:72px}
 .row button{font-size:20px;color:#999}
 .foot{padding:20px;border-top:1px solid #0001}
 .foot .tot{display:flex;justify-content:space-between;font-weight:600;margin-bottom:14px;font-size:17px}
@@ -142,7 +142,7 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
  .menu-m.on{transform:none}
  .menu-m h4{font-family:var(--fh);font-size:22px;margin:18px 0 6px;color:var(--green)}.menu-m a{display:block;padding:8px 0;font-size:15px}
  .slide .wrap{grid-template-columns:1fr;text-align:center;gap:0}
- .slide .txt{order:2}.slide p{margin-inline:auto;font-size:16px}.shoe{order:1}.shoe img{width:62%}
+ .slide .txt{order:2}.slide p{margin-inline:auto;font-size:16px}.shoe{order:1}.shoe img,.shoe svg{width:62%}
  .hero{height:auto;min-height:620px}.slide{padding:30px 0 60px}
  section{padding:48px 0}
  .cats{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
@@ -222,6 +222,27 @@ r.setProperty("--fh", th.fontHead); r.setProperty("--fb", th.fontBody);
 if (!C.features.animations) document.body.classList.add("noanim");
 C.sections.forEach(s => s.items.forEach(i => all[i.id] = i));
 
+// ---------- Ilustraciones vectoriales ----------
+const DK = "#2a2420";
+const SHOES = {
+  choclo: c => `<path d="M62 276V204Q62 192 78 190L150 182Q200 216 252 216Q322 222 346 256Q352 276 340 276Z" fill="${c}"/><path d="M150 182Q200 216 252 216" stroke="#000" stroke-opacity=".2" stroke-width="5" fill="none"/><path d="M172 194L190 216M196 190L214 216M220 192L238 218" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round"/><path d="M258 238Q306 240 334 260" stroke="#fff" stroke-opacity=".25" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="60" y="276" width="292" height="12" rx="5" fill="${DK}"/><rect x="60" y="288" width="52" height="14" rx="3" fill="${DK}"/>`,
+  media: c => `<path d="M84 278V132Q84 120 97 120H172Q182 120 184 132L188 196Q250 206 316 236Q346 250 346 278Z" fill="${c}"/><rect x="84" y="120" width="100" height="16" rx="6" fill="#000" fill-opacity=".2"/><path d="M100 148V268" stroke="#fff" stroke-opacity=".4" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round"/><path d="M200 212Q270 222 330 250" stroke="#fff" stroke-opacity=".25" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="80" y="278" width="274" height="12" rx="5" fill="${DK}"/><rect x="80" y="290" width="58" height="16" rx="3" fill="${DK}"/>`,
+  outdoor: c => `<path d="M80 270V108Q80 94 96 94H174Q190 94 192 108L200 190Q262 200 322 232Q354 248 354 270Z" fill="${c}"/><rect x="80" y="94" width="112" height="18" rx="7" fill="#000" fill-opacity=".22"/><path d="M110 138H168M110 158H170M112 178H176M206 206L252 214" stroke="#fff" stroke-opacity=".65" stroke-width="6" stroke-linecap="round"/><path d="M236 232Q300 240 340 262" stroke="#fff" stroke-opacity=".22" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M72 270H362V296Q362 306 350 306H84Q72 306 72 296Z" fill="${DK}"/><path d="M76 288H358" stroke="#f1ece1" stroke-width="5"/><path d="M82 306H352" stroke="#f1ece1" stroke-width="5" stroke-dasharray="12 9"/>`,
+  cowboy: c => `<path d="M96 272L100 84Q100 72 114 72H190Q202 72 202 86L206 202Q272 208 330 250Q352 264 346 272Z" fill="${c}"/><path d="M100 88Q150 122 202 88" stroke="#fff" stroke-opacity=".5" stroke-width="4" fill="none"/><path d="M112 128Q152 172 192 128M112 164Q152 208 192 164" stroke="#fff" stroke-opacity=".4" stroke-width="3.5" fill="none"/><path d="M218 218Q280 224 330 254" stroke="#fff" stroke-opacity=".22" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="92" y="272" width="258" height="11" rx="5" fill="${DK}"/><path d="M92 283H150L144 308H90Z" fill="${DK}"/>`,
+};
+function shoe(kind, color, alt) {
+  const g = (SHOES[kind] || SHOES.choclo)(color || "#262626");
+  const body = alt
+    ? `<g transform="translate(-8 34) scale(.82) rotate(-5 200 200)">${g}</g><g transform="translate(120 70) scale(.68)" opacity=".92">${g}</g>`
+    : `<g>${g}</g>`;
+  return `<svg viewBox="0 0 400 400" role="img" aria-label="${kind}" xmlns="http://www.w3.org/2000/svg"><circle cx="200" cy="205" r="150" fill="#fff" fill-opacity="${alt ? .5 : .35}"/><ellipse cx="205" cy="312" rx="150" ry="9" fill="#000" fill-opacity=".12"/>${body}</svg>`;
+}
+// usa fotos (assets/) si features.useImages = true; si no, ilustración
+function pic(o, alt) {
+  if (C.features.useImages && o.img) return `<img src="${alt && o.img2 ? o.img2 : o.img}" alt="${o.name || ""}" loading="lazy">`;
+  return shoe(o.kind, o.shoe || o.color, alt);
+}
+
 function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("on"), 2200); }
 
 function render() {
@@ -230,13 +251,13 @@ function render() {
   $("lang").textContent = lang === "es" ? "EN" : "ES"; $("sinp").placeholder = t.search;
   $("nav").innerHTML = C.nav.map(n => `<div class="nav-item"><button>${n.label[lang]}</button><div class="drop">${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}</div></div>`).join("");
   $("mm").innerHTML = C.nav.map(n => `<h4>${n.label[lang]}</h4>${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}`).join("");
-  $("hero").innerHTML = C.hero.map((s, i) => `<div class="slide${i === cur ? " on" : ""}" style="background:${s.bg}"><div class="wrap"><div class="txt"><div class="eyebrow">${s.eyebrow[lang]}</div><h1>${s.title[lang]}</h1><p>${s.text[lang]}</p><a class="btn light" href="#" data-demo>${t.shopNow}</a></div><div class="shoe"><img src="${s.img}" alt=""></div></div></div>`).join("") + `<div class="dots">${C.hero.map((_, i) => `<button class="${i === cur ? "on" : ""}" data-s="${i}" aria-label="${i + 1}"></button>`).join("")}</div>`;
+  $("hero").innerHTML = C.hero.map((s, i) => `<div class="slide${i === cur ? " on" : ""}" style="background:${s.bg}"><div class="wrap"><div class="txt"><div class="eyebrow">${s.eyebrow[lang]}</div><h1>${s.title[lang]}</h1><p>${s.text[lang]}</p><a class="btn light" href="#" data-demo>${t.shopNow}</a></div><div class="shoe">${pic(s)}</div></div></div>`).join("") + `<div class="dots">${C.hero.map((_, i) => `<button class="${i === cur ? "on" : ""}" data-s="${i}" aria-label="${i + 1}"></button>`).join("")}</div>`;
   $("ben").innerHTML = C.benefits.map(b => `<div class="b"><i>${b.icon}</i><div><b>${b[lang][0]}</b><span>${b[lang][1]}</span></div></div>`).join("");
   $("catsub").textContent = t.catSub; $("cattitle").textContent = t.catTitle;
-  $("cats").innerHTML = C.categories.map(c => `<a class="cat" href="#" data-demo style="background:${c.color}">${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : ""}<div><span>${t.discover}</span><h3>${c.name[lang]}</h3></div></a>`).join("");
-  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${favs.has(i.id) ? "♥" : "♡"}</button><div class="ph"><img src="${i.img}" alt="${i.name}" loading="lazy"><img src="${i.img2}" alt="" loading="lazy"><button class="quick" data-a="${i.id}">${t.add}</button></div><h3>${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
+  $("cats").innerHTML = C.categories.map(c => `<a class="cat" href="#" data-demo style="background:${c.color}">${pic(c)}<div><span>${t.discover}</span><h3>${c.name[lang]}</h3></div></a>`).join("");
+  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${favs.has(i.id) ? "♥" : "♡"}</button><div class="ph">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}">${t.add}</button></div><h3>${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
   $("se").textContent = t.storyEyebrow; $("st").textContent = t.storyTitle; $("sx").textContent = t.storyText; $("sc").textContent = t.storyCta;
-  $("mos").innerHTML = [C.sections[1].items[0], C.sections[2].items[2], C.sections[0].items[1], C.sections[1].items[3]].map(i => `<img src="${i.img}" alt="" loading="lazy">`).join("");
+  $("mos").innerHTML = [C.sections[1].items[0], C.sections[2].items[2], C.sections[0].items[1], C.sections[1].items[3]].map(i => pic(i)).join("");
   $("nt").textContent = t.newsTitle; $("nx").textContent = t.newsText; $("ni").placeholder = t.newsPh; $("nb").textContent = t.newsBtn;
   $("fh1").textContent = t.footHelp; $("fh2").textContent = t.footBrand; $("fcall").textContent = t.callUs; $("fphone").textContent = C.brand.phone;
   $("rights").textContent = "© " + new Date().getFullYear() + " " + C.brand.name + " · " + t.rights;
@@ -247,7 +268,7 @@ function render() {
 function renderCart() {
   const t = T(), ids = Object.keys(cart), n = ids.reduce((a, k) => a + cart[k], 0), sum = ids.reduce((a, k) => a + cart[k] * all[k].price, 0);
   $("cc").textContent = n; $("favc").textContent = favs.size;
-  $("items").innerHTML = ids.length ? ids.map(k => `<div class="row"><img src="${all[k].img}" alt=""><div>${all[k].name}<br><b class="price">${cart[k]} × ${money(all[k].price)}</b></div><button data-rm="${k}" aria-label="x">✕</button></div>`).join("") : `<p class="empty">${t.cartEmpty}</p>`;
+  $("items").innerHTML = ids.length ? ids.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${cart[k]} × ${money(all[k].price)}</b></div><button data-rm="${k}" aria-label="x">✕</button></div>`).join("") : `<p class="empty">${t.cartEmpty}</p>`;
   $("subv").textContent = money(sum);
   const left = C.freeShipping - sum;
   $("shiptxt").textContent = left > 0 ? t.shipLeft(left.toLocaleString("es-MX")) : t.shipOk;
