@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#49704d">
+<title>Verde Tabaco · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+h1,h2,h3{font-family:var(--fh);font-weight:600;line-height:1.1}
+.wrap{max-width:1280px;margin:auto;padding:0 20px}
+.btn{display:inline-block;padding:14px 28px;background:var(--green);color:#fff;border-radius:var(--r);font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;transition:.25s}
+.btn:hover{background:var(--gd);transform:translateY(-2px)}
+.btn.light{background:#fff;color:var(--gd)}.btn.light:hover{background:var(--cream)}
+
+/* barra superior + nav */
+.announce{background:var(--gd);color:#fff;text-align:center;font-size:13px;padding:8px 12px;letter-spacing:.03em}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid #0001}
+.bar{display:flex;align-items:center;gap:20px;height:68px}
+.logo{font-family:var(--fh);font-size:25px;color:var(--green);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo i{width:26px;height:26px;border-radius:50% 0 50% 0;background:var(--green);display:inline-block}
+nav.main{display:flex;gap:6px;margin-left:24px}
+.nav-item{position:relative}
+.nav-item>button{padding:24px 12px;font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+.drop{position:absolute;top:100%;left:0;min-width:210px;background:#fff;padding:14px;border-radius:var(--r);box-shadow:0 20px 40px #0002;opacity:0;visibility:hidden;transform:translateY(8px);transition:.25s}
+.nav-item:hover .drop{opacity:1;visibility:visible;transform:none}
+.drop a{display:block;padding:8px 10px;border-radius:4px;font-size:14px}.drop a:hover{background:var(--cream);color:var(--green)}
+.tools{margin-left:auto;display:flex;align-items:center;gap:4px}
+.ic{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;font-size:18px;position:relative;transition:.2s}
+.ic:hover{background:var(--cream)}
+.lang{font-size:12px;font-weight:600;border:1px solid #0003;border-radius:20px;padding:6px 10px;margin-right:6px}
+.badge{position:absolute;top:2px;right:0;background:var(--tob);color:#fff;font-size:10px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;transition:.3s}
+.badge.pop{transform:scale(1.5)}
+.burger{display:none}
+.searchbar{max-height:0;overflow:hidden;transition:.3s;background:#fff}
+.searchbar.open{max-height:80px;border-bottom:1px solid #0001}
+.searchbar input{width:100%;padding:20px 0;border:0;outline:0;font:inherit;font-size:18px}
+
+/* hero */
+.hero{position:relative;height:min(82vh,680px);min-height:520px;overflow:hidden;color:#fff}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s;display:flex;align-items:center}
+.slide.on{opacity:1;z-index:1}
+.slide .wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;width:100%}
+.slide .txt>*{opacity:0;transform:translateY(24px)}
+.slide.on .txt>*{animation:up .8s forwards}
+.slide.on .txt>*:nth-child(2){animation-delay:.12s}.slide.on .txt>*:nth-child(3){animation-delay:.24s}.slide.on .txt>*:nth-child(4){animation-delay:.36s}
+@keyframes up{to{opacity:1;transform:none}}
+.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:12px;opacity:.85;margin-bottom:14px}
+.slide h1{font-size:clamp(34px,5vw,64px);margin-bottom:18px}
+.slide p{font-size:18px;opacity:.9;margin-bottom:28px;max-width:440px}
+.shoe{position:relative;display:grid;place-items:center}
+.shoe::before{content:"";position:absolute;width:min(440px,90%);aspect-ratio:1;border-radius:50%;background:#ffffff1c}
+.shoe img{position:relative;width:min(480px,100%);border-radius:var(--r);transform:scale(.9) rotate(-4deg);transition:transform 6s}
+.slide.on .shoe img{transform:scale(1.05) rotate(0)}
+.dots{position:absolute;bottom:22px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:10px}
+.dots button{width:34px;height:3px;background:#fff6;border-radius:2px;overflow:hidden}
+.dots button.on{background:#fff}
+
+/* secciones */
+section{padding:72px 0}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:32px;gap:16px}
+.head h2{font-size:clamp(26px,3.4vw,40px);max-width:620px}
+.head a{font-size:14px;font-weight:600;border-bottom:2px solid var(--green);white-space:nowrap}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cat{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;color:#fff;display:flex;align-items:end;padding:24px}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.cat:hover img{transform:scale(1.07)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000a)}
+.cat div{position:relative;z-index:1}.cat h3{font-size:30px}.cat span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{position:relative}
+.ph{position:relative;aspect-ratio:1;background:var(--cream);border-radius:var(--r);overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .6s}
+.ph img+img{opacity:0}
+.card:hover .ph img+img{opacity:1}.card:hover .ph img{transform:scale(1.04)}
+.tag{position:absolute;top:10px;left:10px;z-index:2;background:var(--tob);color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em}
+.fav{position:absolute;top:8px;right:8px;z-index:2;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:.2s}
+.fav.on{color:#c0392b;transform:scale(1.15)}
+.quick{position:absolute;left:10px;right:10px;bottom:10px;z-index:2;padding:12px;background:var(--gd);color:#fff;border-radius:var(--r);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transform:translateY(60px);transition:.3s}
+.card:hover .quick{transform:none}
+.card h3{font-family:var(--fb);font-size:15px;font-weight:500;margin:14px 0 4px}
+.price{color:var(--green);font-weight:600}
+
+/* historia */
+.story{background:var(--cream)}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story h2{font-size:clamp(30px,4vw,48px);margin:12px 0 18px}
+.story p{margin-bottom:26px;max-width:480px;color:#444}
+.story .eyebrow{color:var(--tob)}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mosaic img{border-radius:var(--r);aspect-ratio:1;object-fit:cover;width:100%}
+.mosaic img:nth-child(2){margin-top:32px}
+.ben{padding:44px 0;border-bottom:1px solid #0001}
+.ben .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.b{display:flex;gap:14px;align-items:center}.b i{font-style:normal;font-size:28px}.b b{display:block;font-size:15px}.b span{font-size:13px;color:#666}
+.news{background:var(--gd);color:#fff;text-align:center}
+.news h2{font-size:clamp(30px,4vw,46px);margin-bottom:10px}
+.news form{display:flex;gap:10px;max-width:480px;margin:26px auto 0}
+.news input{flex:1;padding:14px 16px;border-radius:var(--r);border:0;font:inherit;min-width:0}
+footer{background:#141914;color:#fffa;padding:56px 0 28px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:36px}
+footer h4{color:#fff;margin-bottom:12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em}
+footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
+.copy{border-top:1px solid #fff2;padding-top:20px;font-size:12px}
+
+/* carrito */
+.veil{position:fixed;inset:0;background:#0006;z-index:90;opacity:0;visibility:hidden;transition:.3s}
+.veil.on{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:100;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.drawer header{position:static;display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
+.drawer h3{font-size:22px}
+.ship{padding:0 20px 16px;font-size:13px}
+.track{height:6px;background:var(--cream);border-radius:3px;margin-top:8px;overflow:hidden}.track i{display:block;height:100%;background:var(--green);width:0;transition:width .5s}
+.items{flex:1;overflow:auto;padding:0 20px}
+.empty{text-align:center;color:#777;margin-top:60px}
+.row{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid #0001;font-size:14px;align-items:center}
+.row img{border-radius:4px;aspect-ratio:1;object-fit:cover;width:72px}
+.row button{font-size:20px;color:#999}
+.foot{padding:20px;border-top:1px solid #0001}
+.foot .tot{display:flex;justify-content:space-between;font-weight:600;margin-bottom:14px;font-size:17px}
+.foot .btn{width:100%;text-align:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,120px);background:#141914;color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;z-index:200;transition:.4s}
+.toast.on{transform:translate(-50%,0)}
+.menu-m{display:none}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s}
+.rv.in,.noanim .rv{opacity:1;transform:none}
+
+/* móvil */
+@media(max-width:900px){
+ nav.main{display:none}.burger{display:grid}
+ .menu-m{display:block;position:fixed;top:0;left:0;bottom:0;width:min(320px,86%);background:#fff;z-index:100;transform:translateX(-100%);transition:.4s;padding:20px;overflow:auto}
+ .menu-m.on{transform:none}
+ .menu-m h4{font-family:var(--fh);font-size:22px;margin:18px 0 6px;color:var(--green)}.menu-m a{display:block;padding:8px 0;font-size:15px}
+ .slide .wrap{grid-template-columns:1fr;text-align:center;gap:0}
+ .slide .txt{order:2}.slide p{margin-inline:auto;font-size:16px}.shoe{order:1}.shoe img{width:62%}
+ .hero{height:auto;min-height:620px}.slide{padding:30px 0 60px}
+ section{padding:48px 0}
+ .cats{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+ .cat{scroll-snap-align:start}
+ .grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62%;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-right:-20px;padding-right:20px}
+ .card{scroll-snap-align:start}.quick{transform:none;position:static;margin-top:10px;display:block;width:100%}
+ .story .wrap{grid-template-columns:1fr;gap:30px}
+ .ben .wrap{grid-template-columns:1fr 1fr}
+ footer .cols{grid-template-columns:1fr 1fr}
+ .head{flex-direction:column;align-items:start}
+ .lang{display:none}
+}
+</style>
+</head>
+<body>
+<div class="announce" id="announce"></div>
+<header>
+  <div class="wrap bar">
+    <button class="ic burger" id="burger" aria-label="Menú">☰</button>
+    <a href="#" class="logo"><img id="logoimg" alt="" style="height:36px;display:none"><i id="logoi"></i><span id="brand"></span></a>
+    <nav class="main" id="nav"></nav>
+    <div class="tools">
+      <button class="lang" id="lang">EN</button>
+      <button class="ic" id="sbtn" aria-label="Buscar">⌕</button>
+      <button class="ic" data-demo aria-label="Cuenta">☺</button>
+      <button class="ic" id="favbtn" aria-label="Favoritos">♡<span class="badge" id="favc">0</span></button>
+      <button class="ic" id="cbtn" aria-label="Carrito">🛍<span class="badge" id="cc">0</span></button>
+    </div>
+  </div>
+  <div class="searchbar" id="sbar"><div class="wrap"><input id="sinp"></div></div>
+</header>
+
+<main>
+  <div class="hero" id="hero"></div>
+  <div class="ben"><div class="wrap" id="ben"></div></div>
+  <section><div class="wrap"><div class="head rv"><div><div class="eyebrow" id="catsub" style="color:var(--tob)"></div><h2 id="cattitle"></h2></div></div><div class="cats rv" id="cats"></div></div></section>
+  <div id="sections"></div>
+  <section class="story"><div class="wrap">
+    <div class="rv"><div class="eyebrow" id="se"></div><h2 id="st"></h2><p id="sx"></p><a class="btn" data-demo id="sc"></a></div>
+    <div class="mosaic rv" id="mos"></div>
+  </div></section>
+  <section class="news"><div class="wrap rv"><h2 id="nt"></h2><p id="nx"></p><form id="nf"><input id="ni" type="email"><button class="btn light" id="nb"></button></form></div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><div class="logo" style="color:#fff;margin-bottom:12px"><i style="background:#fff"></i><span id="fbrand"></span></div><p id="fcall"></p><p style="color:#fff;font-weight:600" id="fphone"></p></div>
+    <div><h4 id="fh1"></h4><a data-demo>Contacto</a><a data-demo>Envíos</a><a data-demo>Cambios</a></div>
+    <div><h4 id="fh2"></h4><a data-demo>Empresa</a><a data-demo>Filosofía</a><a data-demo>Catálogos</a></div>
+    <div><h4>Social</h4><a data-demo>Instagram</a><a data-demo>Facebook</a><a data-demo>TikTok</a></div>
+  </div>
+  <div class="copy" id="rights"></div>
+</div></footer>
+
+<div class="menu-m" id="mm"></div>
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer">
+  <header><h3 id="ct"></h3><button class="ic" id="cx">✕</button></header>
+  <div class="ship"><span id="shiptxt"></span><div class="track"><i id="shipbar"></i></div></div>
+  <div class="items" id="items"></div>
+  <div class="foot"><div class="tot"><span id="subl"></span><span id="subv"></span></div><button class="btn" id="chk" data-demo></button></div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+const C = CONFIG, $ = id => document.getElementById(id);
+let lang = C.defaultLang, cart = {}, favs = new Set(), all = {};
+try { lang = localStorage.getItem("vt-lang") || lang; } catch (e) {}
+const T = () => C.t[lang], money = n => "$" + n.toLocaleString("es-MX");
+
+// tema desde config
+const r = document.documentElement.style, th = C.theme;
+r.setProperty("--green", th.green); r.setProperty("--gd", th.greenDark); r.setProperty("--tob", th.tobacco);
+r.setProperty("--cream", th.cream); r.setProperty("--ink", th.ink); r.setProperty("--r", th.radius);
+r.setProperty("--fh", th.fontHead); r.setProperty("--fb", th.fontBody);
+if (!C.features.animations) document.body.classList.add("noanim");
+C.sections.forEach(s => s.items.forEach(i => all[i.id] = i));
+
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("on"), 2200); }
+
+function render() {
+  const t = T(); document.documentElement.lang = lang;
+  $("announce").textContent = t.announce; $("brand").textContent = $("fbrand").textContent = C.brand.name;
+  $("lang").textContent = lang === "es" ? "EN" : "ES"; $("sinp").placeholder = t.search;
+  $("nav").innerHTML = C.nav.map(n => `<div class="nav-item"><button>${n.label[lang]}</button><div class="drop">${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}</div></div>`).join("");
+  $("mm").innerHTML = C.nav.map(n => `<h4>${n.label[lang]}</h4>${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}`).join("");
+  $("hero").innerHTML = C.hero.map((s, i) => `<div class="slide${i === cur ? " on" : ""}" style="background:${s.bg}"><div class="wrap"><div class="txt"><div class="eyebrow">${s.eyebrow[lang]}</div><h1>${s.title[lang]}</h1><p>${s.text[lang]}</p><a class="btn light" href="#" data-demo>${t.shopNow}</a></div><div class="shoe"><img src="${s.img}" alt=""></div></div></div>`).join("") + `<div class="dots">${C.hero.map((_, i) => `<button class="${i === cur ? "on" : ""}" data-s="${i}" aria-label="${i + 1}"></button>`).join("")}</div>`;
+  $("ben").innerHTML = C.benefits.map(b => `<div class="b"><i>${b.icon}</i><div><b>${b[lang][0]}</b><span>${b[lang][1]}</span></div></div>`).join("");
+  $("catsub").textContent = t.catSub; $("cattitle").textContent = t.catTitle;
+  $("cats").innerHTML = C.categories.map(c => `<a class="cat" href="#" data-demo style="background:${c.color}">${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : ""}<div><span>${t.discover}</span><h3>${c.name[lang]}</h3></div></a>`).join("");
+  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${favs.has(i.id) ? "♥" : "♡"}</button><div class="ph"><img src="${i.img}" alt="${i.name}" loading="lazy"><img src="${i.img2}" alt="" loading="lazy"><button class="quick" data-a="${i.id}">${t.add}</button></div><h3>${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
+  $("se").textContent = t.storyEyebrow; $("st").textContent = t.storyTitle; $("sx").textContent = t.storyText; $("sc").textContent = t.storyCta;
+  $("mos").innerHTML = [C.sections[1].items[0], C.sections[2].items[2], C.sections[0].items[1], C.sections[1].items[3]].map(i => `<img src="${i.img}" alt="" loading="lazy">`).join("");
+  $("nt").textContent = t.newsTitle; $("nx").textContent = t.newsText; $("ni").placeholder = t.newsPh; $("nb").textContent = t.newsBtn;
+  $("fh1").textContent = t.footHelp; $("fh2").textContent = t.footBrand; $("fcall").textContent = t.callUs; $("fphone").textContent = C.brand.phone;
+  $("rights").textContent = "© " + new Date().getFullYear() + " " + C.brand.name + " · " + t.rights;
+  $("ct").textContent = t.cart; $("subl").textContent = t.subtotal; $("chk").textContent = t.checkout;
+  renderCart(); observe();
+}
+
+function renderCart() {
+  const t = T(), ids = Object.keys(cart), n = ids.reduce((a, k) => a + cart[k], 0), sum = ids.reduce((a, k) => a + cart[k] * all[k].price, 0);
+  $("cc").textContent = n; $("favc").textContent = favs.size;
+  $("items").innerHTML = ids.length ? ids.map(k => `<div class="row"><img src="${all[k].img}" alt=""><div>${all[k].name}<br><b class="price">${cart[k]} × ${money(all[k].price)}</b></div><button data-rm="${k}" aria-label="x">✕</button></div>`).join("") : `<p class="empty">${t.cartEmpty}</p>`;
+  $("subv").textContent = money(sum);
+  const left = C.freeShipping - sum;
+  $("shiptxt").textContent = left > 0 ? t.shipLeft(left.toLocaleString("es-MX")) : t.shipOk;
+  $("shipbar").style.width = Math.min(100, sum / C.freeShipping * 100) + "%";
+}
+
+function openCart(o) { $("drawer").classList.toggle("on", o); $("veil").classList.toggle("on", o); }
+function closeAll() { openCart(false); $("mm").classList.remove("on"); }
+
+document.addEventListener("click", e => {
+  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-s],[data-demo]"); if (!x) return;
+  const d = x.dataset;
+  if (d.a) { cart[d.a] = (cart[d.a] || 0) + 1; renderCart(); const b = $("cc"); b.classList.add("pop"); setTimeout(() => b.classList.remove("pop"), 300); toast(T().added); }
+  else if (d.f) { favs.has(d.f) ? favs.delete(d.f) : favs.add(d.f); x.classList.toggle("on"); x.textContent = favs.has(d.f) ? "♥" : "♡"; renderCart(); }
+  else if (d.rm) { delete cart[d.rm]; renderCart(); }
+  else if (d.s) { go(+d.s, true); }
+  else { e.preventDefault(); if (x.id !== "chk") closeAll(); toast(T().demo); }
+});
+$("cbtn").onclick = () => openCart(true); $("cx").onclick = $("veil").onclick = closeAll;
+$("burger").onclick = () => { $("mm").classList.add("on"); $("veil").classList.add("on"); };
+$("sbtn").onclick = () => { $("sbar").classList.toggle("open"); if ($("sbar").classList.contains("open")) $("sinp").focus(); };
+$("favbtn").onclick = () => toast("♥ " + favs.size);
+$("lang").onclick = () => { lang = lang === "es" ? "en" : "es"; try { localStorage.setItem("vt-lang", lang); } catch (e) {} render(); };
+$("nf").onsubmit = e => { e.preventDefault(); toast("✓"); $("ni").value = ""; };
+
+// slider
+let cur = 0, timer;
+function go(i, manual) {
+  cur = (i + C.hero.length) % C.hero.length;
+  document.querySelectorAll(".slide").forEach((s, k) => s.classList.toggle("on", k === cur));
+  document.querySelectorAll(".dots button").forEach((s, k) => s.classList.toggle("on", k === cur));
+  if (manual) auto();
+}
+function auto() { clearInterval(timer); if (C.features.heroAutoplay) timer = setInterval(() => go(cur + 1), C.features.heroInterval); }
+
+// reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el)); }
+
+// logo opcional (assets/logo.png) y manejo de imágenes faltantes
+if (C.brand.logo) { const l = $("logoimg"); l.onload = () => { l.style.display = "block"; $("logoi").style.display = $("brand").style.display = "none"; }; l.src = C.brand.logo; }
+document.addEventListener("error", e => { if (e.target.tagName === "IMG" && e.target.id !== "logoimg") e.target.style.visibility = "hidden"; }, true);
+
+render(); auto();
+</script>
+</body>
+</html>
