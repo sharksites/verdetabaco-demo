@@ -11,6 +11,7 @@ const CONFIG = {
   defaultLang: "es", // "es" | "en"
   brand: { name: "verdetabaco", since: 1987, phone: "(476) 757 55 55", logo: "assets/logo.png" }, // si no existe logo.png se usa el texto
   freeShipping: 1000, // MXN
+  sizes: { men: [25, 26, 27, 28, 29, 30], women: [22, 23, 24, 25, 26, 27] }, // tallas MX
 
   theme: {
     green: "#49704d",      // color de marca (el de su sitio actual)
@@ -39,7 +40,7 @@ const CONFIG = {
       newsTitle: "Camina, vive verde.", newsText: "Suscríbete y recibe lanzamientos y promociones.", newsPh: "Tu correo", newsBtn: "Suscribirme",
       footHelp: "Ayuda", footBrand: "Marca", callUs: "¿Tienes preguntas? Llámanos",
       demo: "Demo · esta sección aún está en construcción",
-      favEmpty: "Aún no tienes favoritos", noResults: "Sin resultados",
+      favEmpty: "Aún no tienes favoritos", size: "Talla", pickSize: "Elige tu talla", desc: "Materiales seleccionados y suela ligera y cómoda para uso diario.", noResults: "Sin resultados",
       rights: "Demo de rediseño · no es el sitio oficial",
     },
     en: {
@@ -55,7 +56,7 @@ const CONFIG = {
       newsTitle: "Walk. Live green.", newsText: "Subscribe for new drops and offers.", newsPh: "Your email", newsBtn: "Subscribe",
       footHelp: "Help", footBrand: "Brand", callUs: "Questions? Call us",
       demo: "Demo · this section is still under construction",
-      favEmpty: "No favorites yet", noResults: "No results",
+      favEmpty: "No favorites yet", size: "Size", pickSize: "Choose your size", desc: "Selected materials and a light, comfortable sole for everyday wear.", noResults: "No results",
       rights: "Redesign demo · not the official site",
     },
   },
@@ -111,7 +112,7 @@ const CONFIG = {
       p("3409n", "3409 Media Bota Verta Negro", 1299, "3409-negro", "outdoor", "#2b2b2b"),
       p("1648m", "1648 Media Bota Samir Miel", 1199, "1648-miel", "media", "#c98b4b"),
     ] },
-    { title: { es: "Calzado de confort para dama", en: "Comfort footwear for women" }, items: [
+    { title: { es: "Calzado de confort para dama", en: "Comfort footwear for women" }, sizes: "women", items: [
       p("8010n", "8010 Media Bota Vittorine Negro", 999, "8010-negro", "media", "#262626"),
       p("8027n", "8027 Media Bota Miss Negro", 999, "8027-negro", "media", "#3a2a24"),
       p("8058c", "8058 Media Bota Miss Café", 999, "8058-cafe", "media", "#7a4a35", "Nuevo"),
