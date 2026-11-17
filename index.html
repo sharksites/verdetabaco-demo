@@ -84,9 +84,9 @@ section{padding:72px 0}
 .fav{position:absolute;top:8px;right:8px;z-index:2;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:.2s}
 .fav.on{color:#c0392b;transform:scale(1.15)}
 .quick{position:absolute;left:10px;right:10px;bottom:10px;z-index:2;padding:12px;background:var(--gd);color:#fff;border-radius:var(--r);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transform:translateY(60px);transition:.3s}
-@media(hover:hover){.card:hover .quick{transform:none}.card:hover .ph img+img,.card:hover .ph>svg+svg{opacity:1}.card:hover .ph img,.card:hover .ph>svg{transform:scale(1.04)}}
+@media(hover:hover){.card:hover .quick{transform:none}.card:hover .ph>svg:first-child,.card:hover .ph>img:first-child{opacity:0}.card:hover .ph img+img,.card:hover .ph>svg+svg{opacity:1}.card:hover .ph img,.card:hover .ph>svg{transform:scale(1.04)}}
 @media(max-width:900px),(hover:none){.quick{transform:none;left:auto;right:8px;bottom:8px;width:40px;height:40px;padding:0;border-radius:50%;font-size:0}.quick::before{content:"+";font-size:26px;line-height:40px;display:block}}
-.card h3{font-family:var(--fb);font-size:15px;font-weight:500;margin:14px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
+.card h3{font-family:var(--fb);font-size:15px;font-weight:500;margin:14px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
 .price{color:var(--green);font-weight:600}
 
 /* historia */
@@ -136,7 +136,18 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 .rv{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s}
 .rv.in,.noanim .rv{opacity:1;transform:none}
 
-.shoe svg circle{display:none}body{overflow-x:clip}body.lock{overflow:hidden}
+.shoe svg circle{display:none}.ic svg,.hrt{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fav.on .hrt,.rmfav .hrt{fill:currentColor}.rmfav{color:#c0392b}.ph{cursor:pointer}.sz{color:#777;font-size:12px}
+.modal{position:fixed;left:50%;top:50%;width:min(880px,94%);max-height:92vh;overflow:auto;background:#fff;border-radius:12px;z-index:110;transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:.3s;display:grid;grid-template-columns:1fr 1fr}
+.modal.on{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+.mx{position:absolute;top:10px;right:10px;z-index:2;background:#fff}
+.mg{background:var(--cream);padding:20px}.mv svg,.mv img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.mt{display:flex;gap:10px;margin-top:10px}.mt button{width:64px;height:64px;border-radius:6px;border:2px solid transparent;background:#fff8;overflow:hidden}.mt button.on{border-color:var(--green)}.mt svg,.mt img{width:100%;height:100%}
+.mi{padding:40px 30px 30px;display:flex;flex-direction:column;gap:12px}.mi h3{font-size:28px}.price.big{font-size:24px}.mi p{color:#555;font-size:14px}.mi small{color:#777}
+.szl{font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+.szs{display:flex;flex-wrap:wrap;gap:8px}.szs button{min-width:48px;height:44px;border:1px solid #0003;border-radius:var(--r);font-weight:500}.szs button.on{background:var(--green);color:#fff;border-color:var(--green)}
+.mi .btn{margin-top:8px;text-align:center}
+body{overflow-x:clip}body.lock{overflow:hidden}
 :focus-visible{outline:2px solid var(--tob);outline-offset:2px}
 .grid,.cats{scrollbar-width:none}.grid::-webkit-scrollbar,.cats::-webkit-scrollbar{display:none}
 .badge.z{display:none}
@@ -162,7 +173,7 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
  .cats{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
  .cat{scroll-snap-align:start}
  .grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62%;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-right:-20px;padding-right:20px}
- .card{scroll-snap-align:start}
+ .card{scroll-snap-align:start}.card h3{min-height:2.9em}.modal{grid-template-columns:1fr;top:auto;bottom:0;left:0;width:100%;max-height:90vh;border-radius:16px 16px 0 0;transform:translateY(100%)}.modal.on{transform:none}.mi{padding:22px 20px 28px}.mg{padding:14px}.mv svg{max-height:40vh}
  .story .wrap{grid-template-columns:1fr;gap:30px}
  .ben .wrap{grid-template-columns:1fr 1fr}
  footer .cols{grid-template-columns:1fr 1fr}
@@ -175,15 +186,15 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 <div class="announce" id="announce"></div>
 <header>
   <div class="wrap bar">
-    <button class="ic burger" id="burger" aria-label="Menú">☰</button>
+    <button class="ic burger" id="burger" aria-label="Menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <a href="#" class="logo"><img id="logoimg" alt="" style="height:36px;display:none"><i id="logoi"></i><span id="brand"></span></a>
     <nav class="main" id="nav"></nav>
     <div class="tools">
       <button class="lang" id="lang">EN</button>
-      <button class="ic" id="sbtn" aria-label="Buscar">⌕</button>
-      <button class="ic acct" data-demo aria-label="Cuenta">☺</button>
-      <button class="ic" id="favbtn" aria-label="Favoritos">♡<span class="badge z" id="favc">0</span></button>
-      <button class="ic" id="cbtn" aria-label="Carrito">🛍<span class="badge z" id="cc">0</span></button>
+      <button class="ic" id="sbtn" aria-label="Buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+      <button class="ic acct" data-demo aria-label="Cuenta"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></button>
+      <button class="ic" id="favbtn" aria-label="Favoritos"><svg viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-9.5-10C1.4 6.8 3.9 4 7 4c2 0 3.700 1 5 3 1.300-2 3-3 5-3 3.100 0 5.600 2.800 4.500 6.500-1.500 5.100-9.500 10-9.500 10z"/></svg><span class="badge z" id="favc">0</span></button>
+      <button class="ic" id="cbtn" aria-label="Carrito"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span class="badge z" id="cc">0</span></button>
     </div>
   </div>
   <div class="searchbar" id="sbar"><div class="wrap"><input id="sinp" type="search" autocomplete="off"></div></div>
@@ -215,11 +226,12 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 <div class="menu-m" id="mm"></div>
 <div class="veil" id="veil"></div>
 <aside class="drawer" id="drawer">
-  <header><h3 id="ct"></h3><button class="ic" id="cx">✕</button></header>
+  <header><h3 id="ct"></h3><button class="ic" id="cx"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
   <div class="ship"><span id="shiptxt"></span><div class="track"><i id="shipbar"></i></div></div>
   <div class="items" id="items"></div>
   <div class="foot"><div class="tot"><span id="subl"></span><span id="subv"></span></div><button class="btn" id="chk" data-demo></button></div>
 </aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true"></div>
 <div class="toast" id="toast"></div>
 
 <script src="config.js"></script>
@@ -235,10 +247,15 @@ r.setProperty("--green", th.green); r.setProperty("--gd", th.greenDark); r.setPr
 r.setProperty("--cream", th.cream); r.setProperty("--ink", th.ink); r.setProperty("--r", th.radius);
 r.setProperty("--fh", th.fontHead); r.setProperty("--fb", th.fontBody);
 if (!C.features.animations) document.body.classList.add("noanim");
-C.sections.forEach(s => s.items.forEach(i => all[i.id] = i));
+C.sections.forEach(s => s.items.forEach(i => { all[i.id] = i; i.sz = C.sizes[s.sizes || "men"]; }));
+let qid = "", qsize = "", qview = "side";
+const prod = k => all[k.split("|")[0]];
 
 // ---------- Ilustraciones vectoriales ----------
 const DK = "#2a2420";
+const HRT = '<svg class="hrt" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-9.5-10C1.4 6.8 3.9 4 7 4c2 0 3.700 1 5 3 1.300-2 3-3 5-3 3.100 0 5.600 2.800 4.500 6.500-1.500 5.100-9.500 10-9.500 10z"/></svg>';
+const XI = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const sole = c => `<g transform="translate(30 30) scale(.85) rotate(-24 200 210)"><path d="M200 62C256 62 284 104 280 168C277 212 252 232 255 276C258 326 238 352 200 352C162 352 142 326 145 276C148 232 123 212 120 168C116 104 144 62 200 62Z" fill="${c}"/><path d="M200 76C248 76 270 112 267 168C264 214 238 236 241 278C243 318 228 338 200 338C172 338 157 318 159 278C162 236 136 214 133 168C130 112 152 76 200 76Z" fill="${DK}"/><path d="M160 112H240M148 138H252M146 164H254M150 190H250M170 216H230" stroke="#f1ece1" stroke-opacity=".5" stroke-width="5" stroke-linecap="round"/><rect x="172" y="262" width="56" height="52" rx="14" fill="#000" fill-opacity=".35"/><path d="M180 288H220" stroke="${c}" stroke-width="6" stroke-linecap="round"/></g>`;
 const SHOES = {
   choclo: c => `<path d="M62 276V204Q62 192 78 190L150 182Q200 216 252 216Q322 222 346 256Q352 276 340 276Z" fill="${c}"/><path d="M150 182Q200 216 252 216" stroke="#000" stroke-opacity=".2" stroke-width="5" fill="none"/><path d="M172 194L190 216M196 190L214 216M220 192L238 218" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round"/><path d="M258 238Q306 240 334 260" stroke="#fff" stroke-opacity=".25" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="60" y="276" width="292" height="12" rx="5" fill="${DK}"/><rect x="60" y="288" width="52" height="14" rx="3" fill="${DK}"/>`,
   media: c => `<path d="M84 278V132Q84 120 97 120H172Q182 120 184 132L188 196Q250 206 316 236Q346 250 346 278Z" fill="${c}"/><rect x="84" y="120" width="100" height="16" rx="6" fill="#000" fill-opacity=".2"/><path d="M100 148V268" stroke="#fff" stroke-opacity=".4" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round"/><path d="M200 212Q270 222 330 250" stroke="#fff" stroke-opacity=".25" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="80" y="278" width="274" height="12" rx="5" fill="${DK}"/><rect x="80" y="290" width="58" height="16" rx="3" fill="${DK}"/>`,
@@ -247,10 +264,8 @@ const SHOES = {
 };
 function shoe(kind, color, alt) {
   const g = (SHOES[kind] || SHOES.choclo)(color || "#262626");
-  const body = alt
-    ? `<g transform="translate(-8 34) scale(.82) rotate(-5 200 200)">${g}</g><g transform="translate(120 70) scale(.68)" opacity=".92">${g}</g>`
-    : `<g>${g}</g>`;
-  return `<svg viewBox="0 0 400 400" role="img" aria-label="${kind}" xmlns="http://www.w3.org/2000/svg"><circle cx="200" cy="205" r="150" fill="#fff" fill-opacity="${alt ? .5 : .35}"/><ellipse cx="205" cy="312" rx="150" ry="9" fill="#000" fill-opacity=".12"/>${body}</svg>`;
+  const body = alt ? sole(color || "#262626") : `<g>${g}</g>`;
+  return `<svg viewBox="0 0 400 400" role="img" aria-label="${kind}" xmlns="http://www.w3.org/2000/svg"><circle cx="200" cy="205" r="150" fill="#fff" fill-opacity="${alt ? .5 : .35}"/>${alt ? "" : '<ellipse cx="205" cy="312" rx="150" ry="9" fill="#000" fill-opacity=".12"/>'}${body}</svg>`;
 }
 // usa fotos (assets/) si features.useImages = true; si no, ilustración
 function pic(o, alt) {
@@ -270,7 +285,7 @@ function render() {
   $("ben").innerHTML = C.benefits.map(b => `<div class="b"><i>${b.icon}</i><div><b>${b[lang][0]}</b><span>${b[lang][1]}</span></div></div>`).join("");
   $("catsub").textContent = t.catSub; $("cattitle").textContent = t.catTitle;
   $("cats").innerHTML = C.categories.map(c => `<a class="cat" href="#" data-demo style="background:${c.color}">${pic(c)}<div><span>${t.discover}</span><h3>${c.name[lang]}</h3></div></a>`).join("");
-  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${favs.has(i.id) ? "♥" : "♡"}</button><div class="ph">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}" aria-label="${t.add}">${t.add}</button></div><h3>${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
+  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${HRT}</button><div class="ph" data-o="${i.id}">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}" aria-label="${t.add}">${t.add}</button></div><h3 data-o="${i.id}">${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
   $("se").textContent = t.storyEyebrow; $("st").textContent = t.storyTitle; $("sx").textContent = t.storyText; $("sc").textContent = t.storyCta;
   $("mos").innerHTML = [C.sections[1].items[0], C.sections[2].items[2], C.sections[0].items[1], C.sections[1].items[3]].map(i => pic(i)).join("");
   $("nt").textContent = t.newsTitle; $("nx").textContent = t.newsText; $("ni").placeholder = t.newsPh; $("nb").textContent = t.newsBtn;
@@ -281,32 +296,41 @@ function render() {
 }
 
 function renderCart() {
-  const t = T(), ids = Object.keys(cart), n = ids.reduce((a, k) => a + cart[k], 0), sum = ids.reduce((a, k) => a + cart[k] * all[k].price, 0);
+  const t = T(), ids = Object.keys(cart), n = ids.reduce((a, k) => a + cart[k], 0), sum = ids.reduce((a, k) => a + cart[k] * prod(k).price, 0);
   $("cc").textContent = n; $("favc").textContent = favs.size; $("cc").classList.toggle("z", !n); $("favc").classList.toggle("z", !favs.size);
   const fl = [...favs];
   $("drawer").classList.toggle("favmode", mode === "favs"); $("ct").textContent = mode === "favs" ? t.wishlist : t.cart;
   $("items").innerHTML = mode === "favs"
-    ? (fl.length ? fl.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${money(all[k].price)}</b><div class="qty"><button class="txt" data-a="${k}">${t.add}</button></div></div><button data-f="${k}" aria-label="x">♥</button></div>`).join("") : `<p class="empty">${t.favEmpty}</p>`)
-    : (ids.length ? ids.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${money(all[k].price)}</b><div class="qty"><button data-q="${k}:-1" aria-label="-">−</button><span>${cart[k]}</span><button data-q="${k}:1" aria-label="+">+</button></div></div><button data-rm="${k}" aria-label="x">✕</button></div>`).join("") : `<p class="empty">${t.cartEmpty}</p>`);
+    ? (fl.length ? fl.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${money(all[k].price)}</b><div class="qty"><button class="txt" data-a="${k}">${t.add}</button></div></div><button class="rmfav" data-f="${k}" aria-label="x">${HRT}</button></div>`).join("") : `<p class="empty">${t.favEmpty}</p>`)
+    : (ids.length ? ids.map(k => { const p = prod(k); return `<div class="row">${pic(p)}<div>${p.name}<br><span class="sz">${t.size} ${k.split("|")[1]}</span> · <b class="price">${money(p.price)}</b><div class="qty"><button data-q="${k}" data-n="-1" aria-label="-">−</button><span>${cart[k]}</span><button data-q="${k}" data-n="1" aria-label="+">+</button></div></div><button data-rm="${k}" aria-label="x">✕</button></div>`; }).join("") : `<p class="empty">${t.cartEmpty}</p>`);
   $("subv").textContent = money(sum);
   const left = C.freeShipping - sum;
   $("shiptxt").textContent = left > 0 ? t.shipLeft(left.toLocaleString("es-MX")) : t.shipOk;
   $("shipbar").style.width = Math.min(100, sum / C.freeShipping * 100) + "%";
 }
 
-function lock() { document.body.classList.toggle("lock", $("drawer").classList.contains("on") || $("mm").classList.contains("on")); }
+function lock() { document.body.classList.toggle("lock", ["drawer", "mm", "modal"].some(i => $(i).classList.contains("on"))); }
+function addCart(id, size) { const k = id + "|" + size; cart[k] = (cart[k] || 0) + 1; renderCart(); const b = $("cc"); b.classList.add("pop"); setTimeout(() => b.classList.remove("pop"), 300); }
+function renderModal() {
+  const i = all[qid], t = T();
+  $("modal").innerHTML = `<button class="ic mx" data-close aria-label="x">${XI}</button><div class="mg"><div class="mv">${pic(i, qview === "sole")}</div><div class="mt"><button class="${qview === "side" ? "on" : ""}" data-qv="side">${pic(i)}</button><button class="${qview === "sole" ? "on" : ""}" data-qv="sole">${pic(i, true)}</button></div></div><div class="mi">${i.tag ? `<span class="tag" style="position:static;align-self:flex-start">${i.tag}</span>` : ""}<h3>${i.name}</h3><div class="price big">${money(i.price)}</div><p>${t.desc}</p><div class="szl">${t.size}</div><div class="szs">${i.sz.map(s => `<button class="${qsize == s ? "on" : ""}" data-sz="${s}">${s}</button>`).join("")}</div><button class="btn" data-add>${t.add}</button><small>${t.announce}</small></div>`;
+}
+function openQuick(id) { qid = id; qsize = ""; qview = "side"; renderModal(); $("modal").classList.add("on"); $("veil").classList.add("on"); lock(); }
 function openCart(o, m) { if (m) { mode = m; renderCart(); } $("drawer").classList.toggle("on", o); $("veil").classList.toggle("on", o); lock(); }
-function closeAll() { $("drawer").classList.remove("on"); $("mm").classList.remove("on"); $("veil").classList.remove("on"); lock(); }
-function syncFav(id) { const on = favs.has(id); document.querySelectorAll('.fav[data-f="' + id + '"]').forEach(b => { b.classList.toggle("on", on); b.textContent = on ? "♥" : "♡"; }); }
+function closeAll() { $("drawer").classList.remove("on"); $("mm").classList.remove("on"); $("modal").classList.remove("on"); $("veil").classList.remove("on"); lock(); }
+function syncFav(id) { const on = favs.has(id); document.querySelectorAll('.fav[data-f="' + id + '"]').forEach(b => { b.classList.toggle("on", on); }); }
 
 document.addEventListener("click", e => {
-  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-q],[data-sr],[data-close],[data-lang],[data-s],[data-demo]"); if (!x) return;
+  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-q],[data-sr],[data-o],[data-sz],[data-qv],[data-add],[data-close],[data-lang],[data-s],[data-demo]"); if (!x) return;
   const d = x.dataset;
-  if (d.a) { cart[d.a] = (cart[d.a] || 0) + 1; renderCart(); const b = $("cc"); b.classList.add("pop"); setTimeout(() => b.classList.remove("pop"), 300); toast(T().added); }
+  if (d.a || d.o) openQuick(d.a || d.o);
   else if (d.f) { favs.has(d.f) ? favs.delete(d.f) : favs.add(d.f); syncFav(d.f); renderCart(); }
   else if (d.rm) { delete cart[d.rm]; renderCart(); }
-  else if (d.q) { const [k, n] = d.q.split(":"); cart[k] = (cart[k] || 0) + +n; if (cart[k] <= 0) delete cart[k]; renderCart(); }
-  else if (d.sr) { cart[d.sr] = (cart[d.sr] || 0) + 1; renderCart(); toast(T().added); }
+  else if (d.q) { cart[d.q] = (cart[d.q] || 0) + +d.n; if (cart[d.q] <= 0) delete cart[d.q]; renderCart(); }
+  else if (d.sr) { $("sres").innerHTML = ""; $("sbar").classList.remove("open"); openQuick(d.sr); }
+  else if (d.sz) { qsize = d.sz; renderModal(); }
+  else if (d.qv) { qview = d.qv; renderModal(); }
+  else if (d.add !== undefined) { if (!qsize) return toast(T().pickSize); addCart(qid, qsize); closeAll(); openCart(true, "cart"); toast(T().added); }
   else if (d.close !== undefined) closeAll();
   else if (d.lang !== undefined) $("lang").click();
   else if (d.s) { go(+d.s, true); }
