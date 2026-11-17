@@ -39,6 +39,7 @@ const CONFIG = {
       newsTitle: "Camina, vive verde.", newsText: "Suscríbete y recibe lanzamientos y promociones.", newsPh: "Tu correo", newsBtn: "Suscribirme",
       footHelp: "Ayuda", footBrand: "Marca", callUs: "¿Tienes preguntas? Llámanos",
       demo: "Demo · esta sección aún está en construcción",
+      favEmpty: "Aún no tienes favoritos", noResults: "Sin resultados",
       rights: "Demo de rediseño · no es el sitio oficial",
     },
     en: {
@@ -54,6 +55,7 @@ const CONFIG = {
       newsTitle: "Walk. Live green.", newsText: "Subscribe for new drops and offers.", newsPh: "Your email", newsBtn: "Subscribe",
       footHelp: "Help", footBrand: "Brand", callUs: "Questions? Call us",
       demo: "Demo · this section is still under construction",
+      favEmpty: "No favorites yet", noResults: "No results",
       rights: "Redesign demo · not the official site",
     },
   },
@@ -113,6 +115,7 @@ const CONFIG = {
       p("8010n", "8010 Media Bota Vittorine Negro", 999, "8010-negro", "media", "#262626"),
       p("8027n", "8027 Media Bota Miss Negro", 999, "8027-negro", "media", "#3a2a24"),
       p("8058c", "8058 Media Bota Miss Café", 999, "8058-cafe", "media", "#7a4a35", "Nuevo"),
+      p("8010c", "8010 Media Bota Vittorine Café", 999, "8010-cafe", "media", "#8a5a40"),
     ] },
   ],
 
