@@ -79,13 +79,14 @@ section{padding:72px 0}
 .ph{position:relative;aspect-ratio:1;background:var(--cream);border-radius:var(--r);overflow:hidden}
 .ph img,.ph>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .6s}
 .ph img+img,.ph>svg+svg{opacity:0}
-.card:hover .ph img+img,.card:hover .ph>svg+svg{opacity:1}.card:hover .ph img,.card:hover .ph>svg{transform:scale(1.04)}
+
 .tag{position:absolute;top:10px;left:10px;z-index:2;background:var(--tob);color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em}
-.fav{position:absolute;top:8px;right:8px;z-index:2;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:.2s}
+.fav{position:absolute;top:8px;right:8px;z-index:2;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:.2s}
 .fav.on{color:#c0392b;transform:scale(1.15)}
 .quick{position:absolute;left:10px;right:10px;bottom:10px;z-index:2;padding:12px;background:var(--gd);color:#fff;border-radius:var(--r);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;transform:translateY(60px);transition:.3s}
-.card:hover .quick{transform:none}
-.card h3{font-family:var(--fb);font-size:15px;font-weight:500;margin:14px 0 4px}
+@media(hover:hover){.card:hover .quick{transform:none}.card:hover .ph img+img,.card:hover .ph>svg+svg{opacity:1}.card:hover .ph img,.card:hover .ph>svg{transform:scale(1.04)}}
+@media(max-width:900px),(hover:none){.quick{transform:none;left:auto;right:8px;bottom:8px;width:40px;height:40px;padding:0;border-radius:50%;font-size:0}.quick::before{content:"+";font-size:26px;line-height:40px;display:block}}
+.card h3{font-family:var(--fb);font-size:15px;font-weight:500;margin:14px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
 .price{color:var(--green);font-weight:600}
 
 /* historia */
@@ -135,6 +136,19 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 .rv{opacity:0;transform:translateY(32px);transition:opacity .8s,transform .8s}
 .rv.in,.noanim .rv{opacity:1;transform:none}
 
+.shoe svg circle{display:none}body{overflow-x:clip}body.lock{overflow:hidden}
+:focus-visible{outline:2px solid var(--tob);outline-offset:2px}
+.grid,.cats{scrollbar-width:none}.grid::-webkit-scrollbar,.cats::-webkit-scrollbar{display:none}
+.badge.z{display:none}
+.sres{position:absolute;left:0;right:0;top:100%;background:#fff;box-shadow:0 24px 30px #0002;max-height:60vh;overflow:auto}.sres:empty{display:none}
+.sr{display:flex;gap:14px;align-items:center;padding:10px 20px;cursor:pointer;font-size:14px}.sr:hover{background:var(--cream)}
+.sr svg,.sr img{width:52px;height:52px;border-radius:4px;background:var(--cream);object-fit:cover;flex:none}
+.qty{display:inline-flex;align-items:center;gap:10px;margin-top:6px}
+.row .qty button{width:28px;height:28px;border:1px solid #0003;border-radius:50%;font-size:16px;color:var(--ink)}
+.row .qty button.txt{width:auto;padding:0 14px;border-radius:14px;font-size:12px;background:var(--green);color:#fff;border:0}
+.favmode .foot,.favmode .ship{display:none}
+.mh{display:flex;justify-content:space-between;align-items:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.slide .txt>*{opacity:1!important;transform:none!important}}
 /* móvil */
 @media(max-width:900px){
  nav.main{display:none}.burger{display:grid}
@@ -148,12 +162,12 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
  .cats{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
  .cat{scroll-snap-align:start}
  .grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62%;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-right:-20px;padding-right:20px}
- .card{scroll-snap-align:start}.quick{transform:none;position:static;margin-top:10px;display:block;width:100%}
+ .card{scroll-snap-align:start}
  .story .wrap{grid-template-columns:1fr;gap:30px}
  .ben .wrap{grid-template-columns:1fr 1fr}
  footer .cols{grid-template-columns:1fr 1fr}
  .head{flex-direction:column;align-items:start}
- .lang{display:none}
+ .tools .lang{display:none}.acct{display:none}.bar{padding:0 12px;gap:2px}.logo{font-size:20px;min-width:0;margin-right:auto}.logo i{width:20px;height:20px}.tools{margin-left:0}.ic{width:38px;height:38px}
 }
 </style>
 </head>
@@ -167,12 +181,13 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
     <div class="tools">
       <button class="lang" id="lang">EN</button>
       <button class="ic" id="sbtn" aria-label="Buscar">⌕</button>
-      <button class="ic" data-demo aria-label="Cuenta">☺</button>
-      <button class="ic" id="favbtn" aria-label="Favoritos">♡<span class="badge" id="favc">0</span></button>
-      <button class="ic" id="cbtn" aria-label="Carrito">🛍<span class="badge" id="cc">0</span></button>
+      <button class="ic acct" data-demo aria-label="Cuenta">☺</button>
+      <button class="ic" id="favbtn" aria-label="Favoritos">♡<span class="badge z" id="favc">0</span></button>
+      <button class="ic" id="cbtn" aria-label="Carrito">🛍<span class="badge z" id="cc">0</span></button>
     </div>
   </div>
-  <div class="searchbar" id="sbar"><div class="wrap"><input id="sinp"></div></div>
+  <div class="searchbar" id="sbar"><div class="wrap"><input id="sinp" type="search" autocomplete="off"></div></div>
+  <div class="sres" id="sres"></div>
 </header>
 
 <main>
@@ -210,7 +225,7 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 <script src="config.js"></script>
 <script>
 const C = CONFIG, $ = id => document.getElementById(id);
-let lang = C.defaultLang, cart = {}, favs = new Set(), all = {};
+let lang = C.defaultLang, cart = {}, favs = new Set(), all = {}, mode = "cart";
 try { lang = localStorage.getItem("vt-lang") || lang; } catch (e) {}
 const T = () => C.t[lang], money = n => "$" + n.toLocaleString("es-MX");
 
@@ -250,12 +265,12 @@ function render() {
   $("announce").textContent = t.announce; $("brand").textContent = $("fbrand").textContent = C.brand.name;
   $("lang").textContent = lang === "es" ? "EN" : "ES"; $("sinp").placeholder = t.search;
   $("nav").innerHTML = C.nav.map(n => `<div class="nav-item"><button>${n.label[lang]}</button><div class="drop">${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}</div></div>`).join("");
-  $("mm").innerHTML = C.nav.map(n => `<h4>${n.label[lang]}</h4>${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}`).join("");
+  $("mm").innerHTML = `<div class="mh"><button class="lang" data-lang>${lang === "es" ? "EN" : "ES"}</button><button class="ic" data-close aria-label="x">✕</button></div>` + C.nav.map(n => `<h4>${n.label[lang]}</h4>${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}`).join("");
   $("hero").innerHTML = C.hero.map((s, i) => `<div class="slide${i === cur ? " on" : ""}" style="background:${s.bg}"><div class="wrap"><div class="txt"><div class="eyebrow">${s.eyebrow[lang]}</div><h1>${s.title[lang]}</h1><p>${s.text[lang]}</p><a class="btn light" href="#" data-demo>${t.shopNow}</a></div><div class="shoe">${pic(s)}</div></div></div>`).join("") + `<div class="dots">${C.hero.map((_, i) => `<button class="${i === cur ? "on" : ""}" data-s="${i}" aria-label="${i + 1}"></button>`).join("")}</div>`;
   $("ben").innerHTML = C.benefits.map(b => `<div class="b"><i>${b.icon}</i><div><b>${b[lang][0]}</b><span>${b[lang][1]}</span></div></div>`).join("");
   $("catsub").textContent = t.catSub; $("cattitle").textContent = t.catTitle;
   $("cats").innerHTML = C.categories.map(c => `<a class="cat" href="#" data-demo style="background:${c.color}">${pic(c)}<div><span>${t.discover}</span><h3>${c.name[lang]}</h3></div></a>`).join("");
-  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${favs.has(i.id) ? "♥" : "♡"}</button><div class="ph">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}">${t.add}</button></div><h3>${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
+  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${favs.has(i.id) ? "♥" : "♡"}</button><div class="ph">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}" aria-label="${t.add}">${t.add}</button></div><h3>${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
   $("se").textContent = t.storyEyebrow; $("st").textContent = t.storyTitle; $("sx").textContent = t.storyText; $("sc").textContent = t.storyCta;
   $("mos").innerHTML = [C.sections[1].items[0], C.sections[2].items[2], C.sections[0].items[1], C.sections[1].items[3]].map(i => pic(i)).join("");
   $("nt").textContent = t.newsTitle; $("nx").textContent = t.newsText; $("ni").placeholder = t.newsPh; $("nb").textContent = t.newsBtn;
@@ -267,30 +282,43 @@ function render() {
 
 function renderCart() {
   const t = T(), ids = Object.keys(cart), n = ids.reduce((a, k) => a + cart[k], 0), sum = ids.reduce((a, k) => a + cart[k] * all[k].price, 0);
-  $("cc").textContent = n; $("favc").textContent = favs.size;
-  $("items").innerHTML = ids.length ? ids.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${cart[k]} × ${money(all[k].price)}</b></div><button data-rm="${k}" aria-label="x">✕</button></div>`).join("") : `<p class="empty">${t.cartEmpty}</p>`;
+  $("cc").textContent = n; $("favc").textContent = favs.size; $("cc").classList.toggle("z", !n); $("favc").classList.toggle("z", !favs.size);
+  const fl = [...favs];
+  $("drawer").classList.toggle("favmode", mode === "favs"); $("ct").textContent = mode === "favs" ? t.wishlist : t.cart;
+  $("items").innerHTML = mode === "favs"
+    ? (fl.length ? fl.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${money(all[k].price)}</b><div class="qty"><button class="txt" data-a="${k}">${t.add}</button></div></div><button data-f="${k}" aria-label="x">♥</button></div>`).join("") : `<p class="empty">${t.favEmpty}</p>`)
+    : (ids.length ? ids.map(k => `<div class="row">${pic(all[k])}<div>${all[k].name}<br><b class="price">${money(all[k].price)}</b><div class="qty"><button data-q="${k}:-1" aria-label="-">−</button><span>${cart[k]}</span><button data-q="${k}:1" aria-label="+">+</button></div></div><button data-rm="${k}" aria-label="x">✕</button></div>`).join("") : `<p class="empty">${t.cartEmpty}</p>`);
   $("subv").textContent = money(sum);
   const left = C.freeShipping - sum;
   $("shiptxt").textContent = left > 0 ? t.shipLeft(left.toLocaleString("es-MX")) : t.shipOk;
   $("shipbar").style.width = Math.min(100, sum / C.freeShipping * 100) + "%";
 }
 
-function openCart(o) { $("drawer").classList.toggle("on", o); $("veil").classList.toggle("on", o); }
-function closeAll() { openCart(false); $("mm").classList.remove("on"); }
+function lock() { document.body.classList.toggle("lock", $("drawer").classList.contains("on") || $("mm").classList.contains("on")); }
+function openCart(o, m) { if (m) { mode = m; renderCart(); } $("drawer").classList.toggle("on", o); $("veil").classList.toggle("on", o); lock(); }
+function closeAll() { $("drawer").classList.remove("on"); $("mm").classList.remove("on"); $("veil").classList.remove("on"); lock(); }
+function syncFav(id) { const on = favs.has(id); document.querySelectorAll('.fav[data-f="' + id + '"]').forEach(b => { b.classList.toggle("on", on); b.textContent = on ? "♥" : "♡"; }); }
 
 document.addEventListener("click", e => {
-  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-s],[data-demo]"); if (!x) return;
+  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-q],[data-sr],[data-close],[data-lang],[data-s],[data-demo]"); if (!x) return;
   const d = x.dataset;
   if (d.a) { cart[d.a] = (cart[d.a] || 0) + 1; renderCart(); const b = $("cc"); b.classList.add("pop"); setTimeout(() => b.classList.remove("pop"), 300); toast(T().added); }
-  else if (d.f) { favs.has(d.f) ? favs.delete(d.f) : favs.add(d.f); x.classList.toggle("on"); x.textContent = favs.has(d.f) ? "♥" : "♡"; renderCart(); }
+  else if (d.f) { favs.has(d.f) ? favs.delete(d.f) : favs.add(d.f); syncFav(d.f); renderCart(); }
   else if (d.rm) { delete cart[d.rm]; renderCart(); }
+  else if (d.q) { const [k, n] = d.q.split(":"); cart[k] = (cart[k] || 0) + +n; if (cart[k] <= 0) delete cart[k]; renderCart(); }
+  else if (d.sr) { cart[d.sr] = (cart[d.sr] || 0) + 1; renderCart(); toast(T().added); }
+  else if (d.close !== undefined) closeAll();
+  else if (d.lang !== undefined) $("lang").click();
   else if (d.s) { go(+d.s, true); }
   else { e.preventDefault(); if (x.id !== "chk") closeAll(); toast(T().demo); }
 });
-$("cbtn").onclick = () => openCart(true); $("cx").onclick = $("veil").onclick = closeAll;
-$("burger").onclick = () => { $("mm").classList.add("on"); $("veil").classList.add("on"); };
-$("sbtn").onclick = () => { $("sbar").classList.toggle("open"); if ($("sbar").classList.contains("open")) $("sinp").focus(); };
-$("favbtn").onclick = () => toast("♥ " + favs.size);
+$("cbtn").onclick = () => openCart(true, "cart"); $("cx").onclick = $("veil").onclick = closeAll;
+$("burger").onclick = () => { $("mm").classList.add("on"); $("veil").classList.add("on"); lock(); };
+$("sbtn").onclick = () => { $("sbar").classList.toggle("open"); $("sres").innerHTML = ""; if ($("sbar").classList.contains("open")) $("sinp").focus(); };
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+$("sinp").oninput = e => { const q = norm(e.target.value.trim()); $("sres").innerHTML = q ? (Object.values(all).filter(i => norm(i.name).includes(q)).slice(0, 6).map(i => `<div class="sr" data-sr="${i.id}">${pic(i)}<div>${i.name}<br><b class="price">${money(i.price)}</b></div></div>`).join("") || `<p class="empty" style="margin:0;padding:24px">${T().noResults}</p>`) : ""; };
+document.addEventListener("keydown", e => { if (e.key === "Escape") { closeAll(); $("sbar").classList.remove("open"); $("sres").innerHTML = ""; } });
+$("favbtn").onclick = () => openCart(true, "favs");
 $("lang").onclick = () => { lang = lang === "es" ? "en" : "es"; try { localStorage.setItem("vt-lang", lang); } catch (e) {} render(); };
 $("nf").onsubmit = e => { e.preventDefault(); toast("✓"); $("ni").value = ""; };
 
@@ -303,6 +331,10 @@ function go(i, manual) {
   if (manual) auto();
 }
 function auto() { clearInterval(timer); if (C.features.heroAutoplay) timer = setInterval(() => go(cur + 1), C.features.heroInterval); }
+
+let tx = 0;
+$("hero").addEventListener("touchstart", e => tx = e.touches[0].clientX, { passive: true });
+$("hero").addEventListener("touchend", e => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) go(cur + (d < 0 ? 1 : -1), true); }, { passive: true });
 
 // reveal on scroll
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
