@@ -2,8 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#49704d">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#55823c">
+<link rel="icon" href="assets/favicon.png">
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 <title>Verde Tabaco · Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +24,7 @@ h1,h2,h3{font-family:var(--fh);font-weight:600;line-height:1.1}
 
 /* barra superior + nav */
 .announce{background:var(--gd);color:#fff;text-align:center;font-size:13px;padding:8px 12px;letter-spacing:.03em}
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid #0001}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #0001}
 .bar{display:flex;align-items:center;gap:20px;height:68px}
 .logo{font-family:var(--fh);font-size:25px;color:var(--green);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
 .logo i{width:26px;height:26px;border-radius:50% 0 50% 0;background:var(--green);display:inline-block}
@@ -45,7 +47,7 @@ nav.main{display:flex;gap:6px;margin-left:24px}
 
 /* hero */
 .hero{position:relative;height:min(82vh,680px);min-height:520px;overflow:hidden;color:#fff}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s;display:flex;align-items:center}
+.slide{position:absolute;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity 1s;display:flex;align-items:center}
 .slide.on{opacity:1;z-index:1}
 .slide .wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;width:100%}
 .slide .txt>*{opacity:0;transform:translateY(24px)}
@@ -70,14 +72,14 @@ section{padding:72px 0}
 .head a{font-size:14px;font-weight:600;border-bottom:2px solid var(--green);white-space:nowrap}
 .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .cat{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;color:#fff;display:flex;align-items:end;padding:24px}
-.cat img,.cat>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.cat img,.cat>svg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
 .cat:hover img,.cat:hover>svg{transform:scale(1.07)}
-.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000a)}
+.cat::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(transparent 40%,#000a)}
 .cat div{position:relative;z-index:1}.cat h3{font-size:30px}.cat span{font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .card{position:relative}
 .ph{position:relative;aspect-ratio:1;background:var(--cream);border-radius:var(--r);overflow:hidden}
-.ph img,.ph>svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .6s}
+.ph img,.ph>svg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .6s}
 .ph img+img,.ph>svg+svg{opacity:0}
 
 .tag{position:absolute;top:10px;left:10px;z-index:2;background:var(--tob);color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.08em}
@@ -105,14 +107,14 @@ section{padding:72px 0}
 .news h2{font-size:clamp(30px,4vw,46px);margin-bottom:10px}
 .news form{display:flex;gap:10px;max-width:480px;margin:26px auto 0}
 .news input{flex:1;padding:14px 16px;border-radius:var(--r);border:0;font:inherit;min-width:0}
-footer{background:#141914;color:#fffa;padding:56px 0 28px;font-size:14px}
-footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:36px}
+footer{background:#1b2417;color:#fffa;padding:56px 0 28px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:30px;margin-bottom:36px}
 footer h4{color:#fff;margin-bottom:12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em}
 footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 .copy{border-top:1px solid #fff2;padding-top:20px;font-size:12px}
 
 /* carrito */
-.veil{position:fixed;inset:0;background:#0006;z-index:90;opacity:0;visibility:hidden;transition:.3s}
+.veil{position:fixed;top:0;right:0;bottom:0;left:0;background:#0006;z-index:90;opacity:0;visibility:hidden;transition:.3s}
 .veil.on{opacity:1;visibility:visible}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:100;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
 .drawer.on{transform:none}
@@ -128,8 +130,8 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 .foot{padding:20px;border-top:1px solid #0001}
 .foot .tot{display:flex;justify-content:space-between;font-weight:600;margin-bottom:14px;font-size:17px}
 .foot .btn{width:100%;text-align:center}
-.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,120px);background:#141914;color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;z-index:200;transition:.4s}
-.toast.on{transform:translate(-50%,0)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,120px);background:#1b2417;color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;z-index:200;transition:.4s}
+.toast{opacity:0;visibility:hidden}.toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
 .menu-m{display:none}
 
 /* reveal */
@@ -147,7 +149,7 @@ footer a{display:block;padding:4px 0}footer a:hover{color:#fff}
 .szl{font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
 .szs{display:flex;flex-wrap:wrap;gap:8px}.szs button{min-width:48px;height:44px;border:1px solid #0003;border-radius:var(--r);font-weight:500}.szs button.on{background:var(--green);color:#fff;border-color:var(--green)}
 .mi .btn{margin-top:8px;text-align:center}
-body{overflow-x:clip}body.lock{overflow:hidden}
+body{overflow-x:hidden;overflow-x:clip}body.lock{overflow:hidden}
 :focus-visible{outline:2px solid var(--tob);outline-offset:2px}
 .grid,.cats{scrollbar-width:none}.grid::-webkit-scrollbar,.cats::-webkit-scrollbar{display:none}
 .badge.z{display:none}
@@ -180,6 +182,49 @@ body{overflow-x:clip}body.lock{overflow:hidden}
  .head{flex-direction:column;align-items:start}
  .tools .lang{display:none}.acct{display:none}.bar{padding:0 12px;gap:2px}.logo{font-size:20px;min-width:0;margin-right:auto}.logo i{width:20px;height:20px}.tools{margin-left:0}.ic{width:38px;height:38px}
 }
+
+/* logo */
+.logo img{height:34px;width:auto;display:block}.logo .lf{display:flex;align-items:center;gap:8px}.logo .lf[hidden]{display:none}
+.flogo img{height:34px;width:auto;margin-bottom:14px;display:block}.flogo span{font-family:var(--fh);font-size:24px;color:#fff;display:block;margin-bottom:12px}.flogo [hidden]{display:none}
+/* sellos */
+.seals{position:absolute;left:10px;top:46px;z-index:3;display:flex;flex-direction:column;gap:6px}.seals.nt{top:10px}
+.seal-b{display:block;width:52px;height:52px;border-radius:50%;padding:0;transition:transform .25s;box-shadow:0 2px 8px #0003}
+.seal-b:hover{transform:scale(1.12) rotate(-6deg)}.seal-b svg,.spill svg,.sealcard svg,.vh svg{display:block;width:100%;height:100%}
+.sealgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sealcard{display:flex;gap:24px;align-items:center;padding:28px;border:1px solid #0001;border-radius:var(--r);background:#fff;transition:.3s}
+.sealcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px #0001;border-color:var(--green)}
+.sealcard svg{width:116px;height:116px;flex:none}.sealcard h3{font-size:24px;margin-bottom:6px}.sealcard p{color:#555;font-size:14px;margin-bottom:10px}.sealcard .more{font-weight:600;font-size:14px;color:var(--green)}
+.spills{display:flex;flex-direction:column;gap:8px}
+.spill{display:flex;align-items:center;gap:12px;text-align:left;padding:8px 14px 8px 8px;border:1px solid #0002;border-radius:44px;transition:.2s}
+.spill:hover{border-color:var(--green);background:var(--cream)}.spill svg{width:42px;height:42px;flex:none}.spill b{display:block;font-size:13px}.spill small{display:block;color:#666;font-size:12px}
+/* vista de sello */
+#view{display:none}body.inview #view{display:block}body.inview #home{display:none}
+.vh{background:var(--cream);padding:48px 0 56px;border-bottom:4px solid var(--green)}
+.vh .wrap{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center}.vh .sv{width:190px;height:190px}
+.vh h1{font-size:clamp(32px,5vw,56px);margin:8px 0 14px}.vh p{max-width:660px;font-size:17px;color:#444}
+.back{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:600;margin-bottom:22px;color:var(--green)}.back:hover{text-decoration:underline}
+.vb{padding:56px 0 72px}.vb h2{font-size:clamp(24px,3vw,34px);margin-bottom:22px}
+.pts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.pt{padding:22px;border:1px solid #0001;border-radius:var(--r);display:flex;gap:14px}
+.pt i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--green);display:grid;place-items:center}.pt i svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.pt b{display:block;margin-bottom:4px}.pt span{color:#555;font-size:14px}
+.stp{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stp div{background:var(--cream);padding:22px;border-radius:var(--r);font-size:14px}
+.stp div::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-weight:600;margin-bottom:12px}
+.note{background:var(--cream);border-left:4px solid var(--green);padding:24px;border-radius:var(--r);margin:48px 0}.note p{margin:6px 0 16px;color:#444}
+.vb .head{margin:0 0 24px}
+/* compatibilidad: navegadores sin aspect-ratio */
+@supports not (aspect-ratio:1/1){.ph{min-height:240px}.cat{min-height:380px}.mv svg,.mv img{min-height:280px}.mosaic svg{min-height:140px}}
+/* áreas seguras (iPhone) */
+.drawer .foot{padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}.toast{bottom:calc(26px + env(safe-area-inset-bottom,0px))}
+@media(max-width:900px){
+ .seal-b{width:44px;height:44px}.sealgrid{grid-template-columns:1fr}.sealcard{padding:20px;gap:16px}.sealcard svg{width:88px;height:88px}
+ .logo img{height:26px}.flogo{grid-column:1/-1}
+ .vh{padding:32px 0 40px}.vh .wrap{grid-template-columns:1fr;gap:20px}.vh .sv{width:116px;height:116px}
+ .pts{grid-template-columns:1fr}.stp{grid-template-columns:1fr 1fr}.vb{padding:40px 0 56px}
+ .mi{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:380px){.logo img{height:22px}.stp{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -187,7 +232,7 @@ body{overflow-x:clip}body.lock{overflow:hidden}
 <header>
   <div class="wrap bar">
     <button class="ic burger" id="burger" aria-label="Menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    <a href="#" class="logo"><img id="logoimg" alt="" style="height:36px;display:none"><i id="logoi"></i><span id="brand"></span></a>
+    <a href="#" class="logo" aria-label="verdetabaco"><img id="logoimg" src="assets/logo.png" alt="verdetabaco"><span class="lf" id="lf" hidden><i id="logoi"></i><span id="brand"></span></span></a>
     <nav class="main" id="nav"></nav>
     <div class="tools">
       <button class="lang" id="lang">EN</button>
@@ -201,24 +246,24 @@ body{overflow-x:clip}body.lock{overflow:hidden}
   <div class="sres" id="sres"></div>
 </header>
 
-<main>
+<main id="home">
   <div class="hero" id="hero"></div>
   <div class="ben"><div class="wrap" id="ben"></div></div>
   <section><div class="wrap"><div class="head rv"><div><div class="eyebrow" id="catsub" style="color:var(--tob)"></div><h2 id="cattitle"></h2></div></div><div class="cats rv" id="cats"></div></div></section>
   <div id="sections"></div>
+  <section class="sealsec"><div class="wrap"><div class="head rv"><div><div class="eyebrow" id="ssub" style="color:var(--tob)"></div><h2 id="stitle"></h2></div></div><div class="sealgrid rv" id="sealgrid"></div></div></section>
   <section class="story"><div class="wrap">
     <div class="rv"><div class="eyebrow" id="se"></div><h2 id="st"></h2><p id="sx"></p><a class="btn" data-demo id="sc"></a></div>
     <div class="mosaic rv" id="mos"></div>
   </div></section>
   <section class="news"><div class="wrap rv"><h2 id="nt"></h2><p id="nx"></p><form id="nf"><input id="ni" type="email"><button class="btn light" id="nb"></button></form></div></section>
 </main>
+<main id="view" tabindex="-1"></main>
 
 <footer><div class="wrap">
   <div class="cols">
-    <div><div class="logo" style="color:#fff;margin-bottom:12px"><i style="background:#fff"></i><span id="fbrand"></span></div><p id="fcall"></p><p style="color:#fff;font-weight:600" id="fphone"></p></div>
-    <div><h4 id="fh1"></h4><a data-demo>Contacto</a><a data-demo>Envíos</a><a data-demo>Cambios</a></div>
-    <div><h4 id="fh2"></h4><a data-demo>Empresa</a><a data-demo>Filosofía</a><a data-demo>Catálogos</a></div>
-    <div><h4>Social</h4><a data-demo>Instagram</a><a data-demo>Facebook</a><a data-demo>TikTok</a></div>
+    <div class="flogo"><img id="flogo" src="assets/logo-blanco.png" alt="verdetabaco"><span id="fbrand" hidden></span><p id="fcall"></p><p style="color:#fff;font-weight:600" id="fphone"></p></div>
+    <div id="fcols" style="display:contents"></div>
   </div>
   <div class="copy" id="rights"></div>
 </div></footer>
@@ -256,7 +301,7 @@ const T = () => Object.assign({}, DEF[lang], C.t[lang]), money = n => "$" + n.to
 
 // tema desde config
 const r = document.documentElement.style, th = C.theme;
-r.setProperty("--green", th.green); r.setProperty("--gd", th.greenDark); r.setProperty("--tob", th.tobacco);
+r.setProperty("--green", th.green); r.setProperty("--gd", th.greenDark); r.setProperty("--tob", th.accent || th.tobacco); document.querySelector('meta[name="theme-color"]').content = th.green; C.seals = C.seals || {}; C.footer = C.footer || [];
 r.setProperty("--cream", th.cream); r.setProperty("--ink", th.ink); r.setProperty("--r", th.radius);
 r.setProperty("--fh", th.fontHead); r.setProperty("--fb", th.fontBody);
 if (!C.features.animations) document.body.classList.add("noanim");
@@ -268,6 +313,38 @@ const prod = k => all[k.split("|")[0]];
 const DK = "#2a2420";
 const HRT = '<svg class="hrt" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-9.5-10C1.4 6.8 3.9 4 7 4c2 0 3.700 1 5 3 1.300-2 3-3 5-3 3.100 0 5.600 2.800 4.500 6.500-1.500 5.100-9.500 10-9.500 10z"/></svg>';
 const XI = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const CK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.500 4.500L19 7.500"/></svg>';
+const ICON = {
+  piel: c => `<path d="M9 6l7-3 4 3 4-3 7 3-2 8 5 5-5 5-1 9-8-3-8 3-1-9-5-5 5-5z"/><path d="M20 8v22" stroke="${c}" stroke-width="1.600" stroke-dasharray="2.500 2.500" fill="none"/>`,
+  inyeccion: c => `<path d="M3 26V12q0-2 3-2h7l2 6q8 2 16 8 3 2 3 6H3z"/><rect x="3" y="28" width="34" height="6" rx="2.500" fill-opacity=".55"/><path d="M20 19v6M17 22.500l3 3 3-3" stroke="${c}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+};
+let sealN = 0;
+function seal(k, cls) {
+  const s = C.seals[k], id = "sr" + (++sealN);
+  return `<svg class="${cls || "seal"}" viewBox="0 0 100 100" role="img" aria-label="${s.name[lang]}"><defs><path id="${id}" d="M15 50a35 35 0 1 1 70 0a35 35 0 1 1-70 0"/></defs><circle cx="50" cy="50" r="49" fill="${s.color}"/><circle cx="50" cy="50" r="44.500" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.200" stroke-dasharray="3 2.500"/><text fill="#fff" font-size="8" font-weight="700" font-family="Inter,system-ui,sans-serif"><textPath href="#${id}" xlink:href="#${id}" textLength="212" lengthAdjust="spacing">${s.ring[lang]}</textPath></text><g transform="translate(30 31)" fill="#fff">${ICON[k](s.color)}</g></svg>`;
+}
+const sealsOf = i => (i.seals || []).filter(k => C.seals[k]);
+function card(i) {
+  const t = T(), ss = sealsOf(i);
+  return `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}${ss.length ? `<div class="seals${i.tag ? "" : " nt"}">${ss.map(k => `<button class="seal-b" data-seal="${k}" title="${C.seals[k].name[lang]}" aria-label="${C.seals[k].name[lang]}">${seal(k)}</button>`).join("")}</div>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${HRT}</button><div class="ph" data-o="${i.id}">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}" aria-label="${t.add}">${t.add}</button></div><h3 data-o="${i.id}">${i.name}</h3><div class="price">${money(i.price)}</div></article>`;
+}
+let curView = "";
+function renderView(k) {
+  const s = C.seals[k], t = T(), others = Object.keys(C.seals).filter(x => x !== k), list = Object.values(all).filter(i => sealsOf(i).includes(k));
+  curView = k; document.title = s.name[lang] + " · " + C.brand.name;
+  $("view").innerHTML = `<div class="vh"><div class="wrap">${seal(k, "sv")}<div><a class="back" href="#">← ${t.backShop}</a><div class="eyebrow" style="color:var(--green)">${t.sealEyebrow}</div><h1>${s.name[lang]}</h1><p>${s.intro[lang]}</p></div></div></div>
+<div class="vb"><div class="wrap"><h2>${t.sealWhy}</h2><div class="pts">${s.points.map(p => `<div class="pt"><i>${CK}</i><div><b>${p.t[lang]}</b><span>${p.d[lang]}</span></div></div>`).join("")}</div>
+<h2 style="margin-top:52px">${s.stepsTitle[lang]}</h2><div class="stp">${s.steps.map(x => `<div>${x[lang]}</div>`).join("")}</div>
+<div class="note"><b>${t.sealNoteT}</b><p>${t.sealNote}</p><div class="spills">${others.map(o => `<a class="spill" href="#sello-${o}">${seal(o)}<span><small>${t.sealSeeAlso}</small><b>${C.seals[o].name[lang]}</b></span></a>`).join("")}</div></div>
+<div class="head"><h2 style="margin:0">${t.sealModels}</h2></div><div class="grid">${list.map(card).join("")}</div>
+<p style="margin-top:40px"><a class="btn" href="#">${t.sealBack}</a></p></div></div>`;
+}
+function route() {
+  const m = /^#sello-(\w+)$/.exec(location.hash);
+  closeAll();
+  if (m && C.seals[m[1]]) { renderView(m[1]); document.body.classList.add("inview"); window.scrollTo(0, 0); }
+  else { curView = ""; document.body.classList.remove("inview"); document.title = C.brand.name + " · Demo"; }
+}
 const sole = c => `<g transform="translate(30 30) scale(.85) rotate(-24 200 210)"><path d="M200 62C256 62 284 104 280 168C277 212 252 232 255 276C258 326 238 352 200 352C162 352 142 326 145 276C148 232 123 212 120 168C116 104 144 62 200 62Z" fill="${c}"/><path d="M200 76C248 76 270 112 267 168C264 214 238 236 241 278C243 318 228 338 200 338C172 338 157 318 159 278C162 236 136 214 133 168C130 112 152 76 200 76Z" fill="${DK}"/><path d="M160 112H240M148 138H252M146 164H254M150 190H250M170 216H230" stroke="#f1ece1" stroke-opacity=".5" stroke-width="5" stroke-linecap="round"/><rect x="172" y="262" width="56" height="52" rx="14" fill="#000" fill-opacity=".35"/><path d="M180 288H220" stroke="${c}" stroke-width="6" stroke-linecap="round"/></g>`;
 const SHOES = {
   choclo: c => `<path d="M62 276V204Q62 192 78 190L150 182Q200 216 252 216Q322 222 346 256Q352 276 340 276Z" fill="${c}"/><path d="M150 182Q200 216 252 216" stroke="#000" stroke-opacity=".2" stroke-width="5" fill="none"/><path d="M172 194L190 216M196 190L214 216M220 192L238 218" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round"/><path d="M258 238Q306 240 334 260" stroke="#fff" stroke-opacity=".25" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="60" y="276" width="292" height="12" rx="5" fill="${DK}"/><rect x="60" y="288" width="52" height="14" rx="3" fill="${DK}"/>`,
@@ -292,20 +369,22 @@ function render() {
   const t = T(); document.documentElement.lang = lang;
   $("announce").textContent = t.announce; $("brand").textContent = $("fbrand").textContent = C.brand.name;
   $("lang").textContent = lang === "es" ? "EN" : "ES"; $("sinp").placeholder = t.search;
-  $("nav").innerHTML = C.nav.map(n => `<div class="nav-item"><button>${n.label[lang]}</button><div class="drop">${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}</div></div>`).join("");
-  $("mm").innerHTML = `<div class="mh"><button class="lang" data-lang>${lang === "es" ? "EN" : "ES"}</button><button class="ic" data-close aria-label="x">✕</button></div>` + C.nav.map(n => `<h4>${n.label[lang]}</h4>${n.links.map(l => `<a href="#" data-demo>${l[lang]}</a>`).join("")}`).join("");
+  $("nav").innerHTML = C.nav.map(n => `<div class="nav-item"><button>${n.label[lang]}</button><div class="drop">${n.links.map(l => (l.go ? `<a href="#${l.go}">${l[lang]}</a>` : `<a href="#" data-demo>${l[lang]}</a>`)).join("")}</div></div>`).join("");
+  $("mm").innerHTML = `<div class="mh"><button class="lang" data-lang>${lang === "es" ? "EN" : "ES"}</button><button class="ic" data-close aria-label="x">✕</button></div>` + C.nav.map(n => `<h4>${n.label[lang]}</h4>${n.links.map(l => (l.go ? `<a href="#${l.go}">${l[lang]}</a>` : `<a href="#" data-demo>${l[lang]}</a>`)).join("")}`).join("");
   $("hero").innerHTML = C.hero.map((s, i) => `<div class="slide${i === cur ? " on" : ""}" style="background:${s.bg}"><div class="wrap"><div class="txt"><div class="eyebrow">${s.eyebrow[lang]}</div><h1>${s.title[lang]}</h1><p>${s.text[lang]}</p><a class="btn light" href="#" data-demo>${t.shopNow}</a></div><div class="shoe">${pic(s)}</div></div></div>`).join("") + `<div class="dots">${C.hero.map((_, i) => `<button class="${i === cur ? "on" : ""}" data-s="${i}" aria-label="${i + 1}"></button>`).join("")}</div>`;
   $("ben").innerHTML = C.benefits.map(b => `<div class="b"><i>${b.icon}</i><div><b>${b[lang][0]}</b><span>${b[lang][1]}</span></div></div>`).join("");
   $("catsub").textContent = t.catSub; $("cattitle").textContent = t.catTitle;
   $("cats").innerHTML = C.categories.map(c => `<a class="cat" href="#" data-demo style="background:${c.color}">${pic(c)}<div><span>${t.discover}</span><h3>${c.name[lang]}</h3></div></a>`).join("");
-  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(i => `<article class="card">${i.tag ? `<span class="tag">${i.tag}</span>` : ""}<button class="fav${favs.has(i.id) ? " on" : ""}" data-f="${i.id}" aria-label="fav">${HRT}</button><div class="ph" data-o="${i.id}">${pic(i)}${pic(i, true)}<button class="quick" data-a="${i.id}" aria-label="${t.add}">${t.add}</button></div><h3 data-o="${i.id}">${i.name}</h3><div class="price">${money(i.price)}</div></article>`).join("")}</div></div></section>`).join("");
+  $("sections").innerHTML = C.sections.map(s => `<section style="padding-top:0"><div class="wrap"><div class="head rv"><h2>${s.title[lang]}</h2><a href="#" data-demo>${t.viewAll}</a></div><div class="grid rv">${s.items.map(card).join("")}</div></div></section>`).join("");
+  $("ssub").textContent = t.sealsSub; $("stitle").textContent = t.sealsTitle;
+  $("sealgrid").innerHTML = Object.keys(C.seals).map(k => `<a class="sealcard" href="#sello-${k}">${seal(k)}<div><h3>${C.seals[k].name[lang]}</h3><p>${C.seals[k].short[lang]}</p><span class="more">${t.learnMore} →</span></div></a>`).join("");
   $("se").textContent = t.storyEyebrow; $("st").textContent = t.storyTitle; $("sx").textContent = t.storyText; $("sc").textContent = t.storyCta;
   $("mos").innerHTML = [C.sections[1].items[0], C.sections[2].items[2], C.sections[0].items[1], C.sections[1].items[3]].map(i => pic(i)).join("");
   $("nt").textContent = t.newsTitle; $("nx").textContent = t.newsText; $("ni").placeholder = t.newsPh; $("nb").textContent = t.newsBtn;
-  $("fh1").textContent = t.footHelp; $("fh2").textContent = t.footBrand; $("fcall").textContent = t.callUs; $("fphone").textContent = C.brand.phone;
+  $("fcols").innerHTML = C.footer.map(f => `<div><h4>${f.title[lang]}</h4>${f.links.map(l => l.go ? `<a href="#${l.go}">${l[lang] || l.es}</a>` : `<a href="#" data-demo>${l[lang] || l.es}</a>`).join("")}</div>`).join(""); $("fcall").textContent = t.callUs; $("fphone").textContent = C.brand.phone;
   $("rights").textContent = "© " + new Date().getFullYear() + " " + C.brand.name + " · " + t.rights;
   $("ct").textContent = t.cart; $("subl").textContent = t.subtotal; $("chk").textContent = t.checkout;
-  renderCart(); observe();
+  renderCart(); observe(); if (curView) renderView(curView);
 }
 
 function renderCart() {
@@ -326,7 +405,7 @@ function lock() { document.body.classList.toggle("lock", ["drawer", "mm", "modal
 function addCart(id, size) { const k = id + "|" + size; cart[k] = (cart[k] || 0) + 1; renderCart(); const b = $("cc"); b.classList.add("pop"); setTimeout(() => b.classList.remove("pop"), 300); }
 function renderModal() {
   const i = all[qid], t = T();
-  $("modal").innerHTML = `<button class="ic mx" data-close aria-label="x">${XI}</button><div class="mg"><div class="mv">${pic(i, qview === "sole")}</div><div class="mt"><button class="${qview === "side" ? "on" : ""}" data-qv="side">${pic(i)}</button><button class="${qview === "sole" ? "on" : ""}" data-qv="sole">${pic(i, true)}</button></div></div><div class="mi">${i.tag ? `<span class="tag" style="position:static;align-self:flex-start">${i.tag}</span>` : ""}<h3>${i.name}</h3><div class="price big">${money(i.price)}</div><p>${t.desc}</p><div class="szl">${t.size}</div><div class="szs">${i.sz.map(s => `<button class="${qsize == s ? "on" : ""}" data-sz="${s}">${s}</button>`).join("")}</div><button class="btn" data-add>${t.add}</button><small>${t.announce}</small></div>`;
+  $("modal").innerHTML = `<button class="ic mx" data-close aria-label="x">${XI}</button><div class="mg"><div class="mv">${pic(i, qview === "sole")}</div><div class="mt"><button class="${qview === "side" ? "on" : ""}" data-qv="side">${pic(i)}</button><button class="${qview === "sole" ? "on" : ""}" data-qv="sole">${pic(i, true)}</button></div></div><div class="mi">${i.tag ? `<span class="tag" style="position:static;align-self:flex-start">${i.tag}</span>` : ""}<h3>${i.name}</h3><div class="price big">${money(i.price)}</div>${sealsOf(i).length ? `<div class="spills">${sealsOf(i).map(k => `<button class="spill" data-seal="${k}">${seal(k)}<span><b>${C.seals[k].name[lang]}</b><small>${t.learnMore} →</small></span></button>`).join("")}</div>` : ""}<p>${t.desc}</p><div class="szl">${t.size}</div><div class="szs">${i.sz.map(s => `<button class="${qsize == s ? "on" : ""}" data-sz="${s}">${s}</button>`).join("")}</div><button class="btn" data-add>${t.add}</button><small>${t.announce}</small></div>`;
 }
 function openQuick(id) { qid = id; qsize = ""; qview = "side"; renderModal(); $("modal").classList.add("on"); $("veil").classList.add("on"); lock(); }
 function openCart(o, m) { if (m) { mode = m; renderCart(); } $("drawer").classList.toggle("on", o); $("veil").classList.toggle("on", o); lock(); }
@@ -334,13 +413,14 @@ function closeAll() { $("drawer").classList.remove("on"); $("mm").classList.remo
 function syncFav(id) { const on = favs.has(id); document.querySelectorAll('.fav[data-f="' + id + '"]').forEach(b => { b.classList.toggle("on", on); }); }
 
 document.addEventListener("click", e => {
-  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-q],[data-sr],[data-o],[data-sz],[data-qv],[data-add],[data-close],[data-lang],[data-s],[data-demo]"); if (!x) return;
+  const x = e.target.closest("[data-a],[data-f],[data-rm],[data-q],[data-sr],[data-seal],[data-o],[data-sz],[data-qv],[data-add],[data-close],[data-lang],[data-s],[data-demo]"); if (!x) return;
   const d = x.dataset;
   if (d.a || d.o) openQuick(d.a || d.o);
   else if (d.f) { favs.has(d.f) ? favs.delete(d.f) : favs.add(d.f); syncFav(d.f); renderCart(); }
   else if (d.rm) { delete cart[d.rm]; renderCart(); }
   else if (d.q) { cart[d.q] = (cart[d.q] || 0) + +d.n; if (cart[d.q] <= 0) delete cart[d.q]; renderCart(); }
   else if (d.sr) { $("sres").innerHTML = ""; $("sbar").classList.remove("open"); openQuick(d.sr); }
+  else if (d.seal) { closeAll(); location.hash = "sello-" + d.seal; }
   else if (d.sz) { qsize = d.sz; renderModal(); }
   else if (d.qv) { qview = d.qv; renderModal(); }
   else if (d.add !== undefined) { if (!qsize) return toast(T().pickSize); addCart(qid, qsize); closeAll(); openCart(true, "cart"); toast(T().added); }
@@ -374,14 +454,20 @@ $("hero").addEventListener("touchstart", e => tx = e.touches[0].clientX, { passi
 $("hero").addEventListener("touchend", e => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) go(cur + (d < 0 ? 1 : -1), true); }, { passive: true });
 
 // reveal on scroll
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
-function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io.observe(el)); }
+const io = !window.IntersectionObserver ? null : new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io ? io.observe(el) : el.classList.add("in")); }
 
 // logo opcional (assets/logo.png) y manejo de imágenes faltantes
-if (C.brand.logo) { const l = $("logoimg"); l.onload = () => { l.style.display = "block"; $("logoi").style.display = $("brand").style.display = "none"; }; l.src = C.brand.logo; }
-document.addEventListener("error", e => { if (e.target.tagName === "IMG" && e.target.id !== "logoimg") e.target.style.visibility = "hidden"; }, true);
+const li = $("logoimg"), fl = $("flogo");
+li.onerror = () => { li.style.display = "none"; $("lf").hidden = false; };
+fl.onerror = () => { fl.hidden = true; $("fbrand").hidden = false; };
+if (C.brand.logo && li.getAttribute("src") !== C.brand.logo) li.src = C.brand.logo;
+if (C.brand.logoWhite && fl.getAttribute("src") !== C.brand.logoWhite) fl.src = C.brand.logoWhite;
+if (li.complete && !li.naturalWidth) li.onerror(); if (fl.complete && !fl.naturalWidth) fl.onerror();
+document.addEventListener("error", e => { if (e.target.tagName === "IMG" && !/^(logoimg|flogo)$/.test(e.target.id)) e.target.style.visibility = "hidden"; }, true);
 
-render(); auto();
+window.addEventListener("hashchange", route);
+render(); auto(); route();
 </script>
 </body>
 </html>
