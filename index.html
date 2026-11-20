@@ -184,7 +184,7 @@ body{overflow-x:hidden;overflow-x:clip}body.lock{overflow:hidden}
 }
 
 /* logo */
-.logo img{height:34px;width:auto;display:block}.logo .lf{display:flex;align-items:center;gap:8px}.logo .lf[hidden]{display:none}
+.logo img{height:34px;width:auto;display:block}.logo .lf{display:flex;align-items:center;gap:8px}.logo .lf[hidden],.logo img[hidden]{display:none}.flogo img.inv{filter:brightness(0) invert(1)}
 .flogo img{height:34px;width:auto;margin-bottom:14px;display:block}.flogo span{font-family:var(--fh);font-size:24px;color:#fff;display:block;margin-bottom:12px}.flogo [hidden]{display:none}
 /* sellos */
 .seals{position:absolute;left:10px;top:46px;z-index:3;display:flex;flex-direction:column;gap:6px}.seals.nt{top:10px}
@@ -232,7 +232,7 @@ body{overflow-x:hidden;overflow-x:clip}body.lock{overflow:hidden}
 <header>
   <div class="wrap bar">
     <button class="ic burger" id="burger" aria-label="Menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    <a href="#" class="logo" aria-label="verdetabaco"><img id="logoimg" src="assets/logo.png" alt="verdetabaco"><span class="lf" id="lf" hidden><i id="logoi"></i><span id="brand"></span></span></a>
+    <a href="#" class="logo" aria-label="verdetabaco"><img id="logoimg" alt="verdetabaco" hidden><span class="lf" id="lf" hidden><i id="logoi"></i><span id="brand"></span></span></a>
     <nav class="main" id="nav"></nav>
     <div class="tools">
       <button class="lang" id="lang">EN</button>
@@ -262,7 +262,7 @@ body{overflow-x:hidden;overflow-x:clip}body.lock{overflow:hidden}
 
 <footer><div class="wrap">
   <div class="cols">
-    <div class="flogo"><img id="flogo" src="assets/logo-blanco.png" alt="verdetabaco"><span id="fbrand" hidden></span><p id="fcall"></p><p style="color:#fff;font-weight:600" id="fphone"></p></div>
+    <div class="flogo"><img id="flogo" alt="verdetabaco" hidden><span id="fbrand" hidden></span><p id="fcall"></p><p style="color:#fff;font-weight:600" id="fphone"></p></div>
     <div id="fcols" style="display:contents"></div>
   </div>
   <div class="copy" id="rights"></div>
@@ -458,12 +458,22 @@ const io = !window.IntersectionObserver ? null : new IntersectionObserver(es => 
 function observe() { document.querySelectorAll(".rv:not(.in)").forEach(el => io ? io.observe(el) : el.classList.add("in")); }
 
 // logo opcional (assets/logo.png) y manejo de imágenes faltantes
-const li = $("logoimg"), fl = $("flogo");
-li.onerror = () => { li.style.display = "none"; $("lf").hidden = false; };
-fl.onerror = () => { fl.hidden = true; $("fbrand").hidden = false; };
-if (C.brand.logo && li.getAttribute("src") !== C.brand.logo) li.src = C.brand.logo;
-if (C.brand.logoWhite && fl.getAttribute("src") !== C.brand.logoWhite) fl.src = C.brand.logoWhite;
-if (li.complete && !li.naturalWidth) li.onerror(); if (fl.complete && !fl.naturalWidth) fl.onerror();
+// logo: prueba varias rutas/nombres comunes; si ninguna existe, muestra el nombre en texto
+const asList = v => [].concat(v || []);
+const LOGO = asList(C.brand.logo).concat(["assets/logo.png", "assets/Logo.png", "assets/LOGO.png", "assets/logo.PNG", "assets/LOGO_VT-opt.png", "logo.png", "LOGO_VT-opt.png"]);
+const LOGOW = asList(C.brand.logoWhite).concat(["assets/logo-blanco.png", "assets/Logo-blanco.png", "assets/logo_blanco.png", "logo-blanco.png"]);
+function probe(list) {
+  return new Promise(res => { let k = 0; const t = new Image(); const nx = () => (k < list.length ? (t.src = list[k++]) : res(null)); t.onload = () => res(t.src); t.onerror = nx; nx(); });
+}
+probe(LOGO).then(main => {
+  const li = $("logoimg"), fl = $("flogo");
+  if (main) { li.src = main; li.hidden = false; } else { $("lf").hidden = false; }
+  return probe(LOGOW).then(w => {
+    if (w) { fl.src = w; fl.hidden = false; }
+    else if (main) { fl.classList.add("inv"); fl.src = main; fl.hidden = false; }   // sin logo blanco: invierte el verde
+    else { $("fbrand").hidden = false; }
+  });
+});
 document.addEventListener("error", e => { if (e.target.tagName === "IMG" && !/^(logoimg|flogo)$/.test(e.target.id)) e.target.style.visibility = "hidden"; }, true);
 
 window.addEventListener("hashchange", route);
